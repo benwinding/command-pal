@@ -1,29 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <h2>Command Pal</h2>
+    <p>Press <code>ctrl + p</code> to access Command Pal!</p>
+
+    <modal
+      v-if="showModal"
+      @close="showModal = false"
+      v-on:blurred="showModal = false"
+    >
+    </modal>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import hotkeys from "hotkeys-js";
+import modal from "./modal.vue";
 
 export default Vue.extend({
-  name: "App",
   components: {
-    HelloWorld
-  }
+    modal,
+  },
+  name: "App",
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  mounted() {
+    const that = this;
+    hotkeys("ctrl+p", function(e) {
+      e.preventDefault();
+      that.showModal = true;
+    });
+    hotkeys("esc", function(e) {
+      e.preventDefault();
+      that.showModal = false;
+    });
+    hotkeys("enter", function(e) {
+      e.preventDefault();
+      that.showModal = false;
+    });
+  },
 });
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

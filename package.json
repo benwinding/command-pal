@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "hotkeys-js": "^3.7.6",
     "vue": "^2.6.11"
   },
   "devDependencies": {
