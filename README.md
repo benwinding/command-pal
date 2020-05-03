@@ -1,24 +1,42 @@
 # command-pal
 
-## Project setup
-```
-yarn install
+A command pallete for the web, inspired by VScode.
+
+## Installation
+
+Either install from npm
+
+`yarn add command-pal`
+
+Or use the script tag
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/command-pal"></script>
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Usage
 
-### Compiles and minifies for production
+``` js
+const c = new CommandPal({
+  hotkey: "ctrl+space",
+  commands: [
+    {
+      name: "Goto Profile",
+      goto: "profile",
+    },
+    {
+      name: "Send Message",
+      run: () => alert("Send Message"),
+    },
+    {
+      name: "Goto About",
+      goto: "about",
+    },
+    {
+      name: "Search Contacts",
+      run: () => alert("Searching contacts..."),
+    },
+  ],
+});
+c.start();
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
