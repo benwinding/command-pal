@@ -15,7 +15,7 @@
     keys: ["name"]
   };
 
-  let showModal = true;
+  let showModal = false;
   let currentText = "";
   let selectedIndex = "";
   const fuse = new Fuse(items, options);
@@ -38,7 +38,7 @@
   }
   function onClosed(e) {
     dispatch("closed");
-    // showModal = false;
+    showModal = false;
   }
   function onKeyUp(e) {
     selectedIndex--;
