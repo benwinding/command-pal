@@ -10,12 +10,15 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public"
+    "start": "sirv public",
+    "deploy-demo": "npm run build && gh-pages -d public"
   },
   "homepage": "https://github.com/benwinding/command-pal",
+  "repository": "git@github.com:benwinding/command-pal.git",
   "devDependencies": {
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "gh-pages": "^2.2.0",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
