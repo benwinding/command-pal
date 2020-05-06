@@ -91,7 +91,9 @@
     margin: 0;
     padding: 14px;
     padding-left: 6px;
-  	box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0px;
   }
   .search::placeholder {
     color: #aaa;

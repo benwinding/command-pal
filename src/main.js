@@ -25,8 +25,8 @@ class CommandPal {
     subTo("textChanged");
     subTo("exec");
     this.ps.subscribe('exec', (item) => {
-      if (item.hasOwnProperty('run') && typeof item.run === 'function') {
-        item.run()
+      if (item.handler && typeof item.handler === 'function') {
+        item.handler()
       }
       if (!!item.goto && typeof item.goto === 'string') {
         window.location.hash = item.goto;
