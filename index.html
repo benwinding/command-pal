@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Command Pal!</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css"
+    />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/build/bundle.css" />
+    <script src="/build/bundle.js"></script>
+
+    <style>
+      kbd {
+        border: 1px solid #dbdbdb;
+      }
+    </style>
+  </head>
+
+  <body>
+    <center>
+      <h1>&lt; command-pal / &gt;</h1>
+      <hr />
+      <h3><kbd>Ctrl</kbd> + <kbd>Space</kbd> to access Command Pal!</h3>
+    </center>
+
+    <script>
+      const c = new CommandPal({
+        hotkey: "ctrl+space",
+        commands: [
+          {
+            name: "Goto Profile",
+            goto: "profile",
+          },
+          {
+            name: "Send Message",
+            handler: () => alert("Send Message"),
+          },
+          {
+            name: "Goto About",
+            goto: "about",
+          },
+          {
+            name: "Search Contacts",
+            handler: () => alert("Searching contacts..."),
+          },
+        ],
+      });
+      c.start();
+      c.subscribe("exec", (e) => console.log("exec", { e }));
+      c.subscribe("textChanged", (e) => console.log("textChanged", { e }));
+      c.subscribe("opened", (e) => console.log("opened", { e }));
+      c.subscribe("closed", (e) => console.log("closed", { e }));
+    </script>
+  </body>
+</html>
