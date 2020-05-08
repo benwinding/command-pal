@@ -21,6 +21,7 @@
       pre {
         background-color: black;
         border-radius: 4px;
+        padding: 5px;
       }
       center {
         margin-top: 200px;
@@ -44,17 +45,17 @@
           {
             name: "Goto Profile",
             goto: "profile",
-            shortcut: 'ctrl+9'
+            shortcut: "ctrl+9",
           },
           {
             name: "Send Message",
             handler: () => alert("Send Message"),
-            shortcut: 'ctrl+6'
+            shortcut: "ctrl+6",
           },
           {
             name: "Goto About",
             goto: "about",
-            shortcut: 'ctrl+7'
+            shortcut: "ctrl+7",
           },
           {
             name: "Search Contacts",
@@ -64,10 +65,12 @@
       });
       c.start();
       c.subscribe("exec", (e) => {
-        console.log("exec", { e })
-        document.getElementById('output').innerText += '\n' + e.name;
+        console.log("exec", { e });
+        document.getElementById("output").innerText += "\n" + e.name;
       });
-      c.subscribe("textChanged", (e) => {console.log("textChanged", { e })});
+      c.subscribe("textChanged", (e) => {
+        console.log("textChanged", { e });
+      });
       c.subscribe("opened", (e) => console.log("opened", { e }));
       c.subscribe("closed", (e) => console.log("closed", { e }));
     </script>
