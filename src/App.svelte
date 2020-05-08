@@ -35,10 +35,18 @@
     const currentItem = itemsFiltered[selectedIndex];
     dispatch("exec", currentItem);
     showModal = false;
+    selectedIndex = 0;
+  }
+
+  function onClickedIndex(e) {
+    selectedIndex = e.detail;
+    const currentItem = itemsFiltered[selectedIndex];
+    dispatch("exec", currentItem);
   }
   function onClosed(e) {
     dispatch("closed");
     showModal = false;
+    selectedIndex = 0;
   }
   function onKeyUp(e) {
     selectedIndex--;
@@ -76,7 +84,7 @@
     on:arrowdown={onKeyDown}
     on:textChange={onTextChange}>
     <div slot="items">
-      <ItemsFiltered items={itemsFiltered} {selectedIndex} />
+      <ItemsFiltered items={itemsFiltered} {selectedIndex} on:clickedIndex={onClickedIndex} />
     </div>
   </Modal>
 </div>

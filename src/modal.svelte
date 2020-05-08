@@ -24,6 +24,8 @@
       dispatch("arrowdown");
     } else if (keyCode === "arrowup") {
       dispatch("arrowup");
+    } else if (keyCode === "escape") {
+      onBlur();
     }
   }
 
