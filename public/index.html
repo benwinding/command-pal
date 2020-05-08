@@ -18,6 +18,13 @@
       kbd {
         border: 1px solid #dbdbdb;
       }
+      pre {
+        background-color: black;
+        border-radius: 4px;
+      }
+      center {
+        margin-top: 200px;
+      }
     </style>
   </head>
 
@@ -27,6 +34,8 @@
       <hr />
       <h3><kbd>Ctrl</kbd> + <kbd>Space</kbd> to access Command Pal!</h3>
     </center>
+    <h2>Output</h2>
+    <pre id="output">try it out...</pre>
 
     <script>
       const c = new CommandPal({
@@ -35,14 +44,17 @@
           {
             name: "Goto Profile",
             goto: "profile",
+            shortcut: 'ctrl+9'
           },
           {
             name: "Send Message",
             handler: () => alert("Send Message"),
+            shortcut: 'ctrl+6'
           },
           {
             name: "Goto About",
             goto: "about",
+            shortcut: 'ctrl+7'
           },
           {
             name: "Search Contacts",
@@ -51,8 +63,11 @@
         ],
       });
       c.start();
-      c.subscribe("exec", (e) => console.log("exec", { e }));
-      c.subscribe("textChanged", (e) => console.log("textChanged", { e }));
+      c.subscribe("exec", (e) => {
+        console.log("exec", { e })
+        document.getElementById('output').innerText += '\n' + e.name;
+      });
+      c.subscribe("textChanged", (e) => {console.log("textChanged", { e })});
       c.subscribe("opened", (e) => console.log("opened", { e }));
       c.subscribe("closed", (e) => console.log("closed", { e }));
     </script>

@@ -7,6 +7,8 @@
   import { onMount, createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
+  const asyncTimeout = ms => new Promise(res => setTimeout(res, ms));
+
   export let shortcutKey;
   export let items = [];
   const options = {
@@ -29,6 +31,19 @@
       showModal = true;
       dispatch("opened");
     });
+    items
+      .filter(item => item.shortcut)
+      .map(item => {
+        hotkeys(item.shortcut, async function(e) {
+          e.preventDefault();
+          showModal = true;
+          dispatch("opened");
+          await asyncTimeout(200);
+          selectedIndex = items.findIndex(i => i.name === item.name)
+          await asyncTimeout(100);
+          onExec({})
+        });
+      });
   });
 
   function onExec(e) {
@@ -84,7 +99,10 @@
     on:arrowdown={onKeyDown}
     on:textChange={onTextChange}>
     <div slot="items">
-      <ItemsFiltered items={itemsFiltered} {selectedIndex} on:clickedIndex={onClickedIndex} />
+      <ItemsFiltered
+        items={itemsFiltered}
+        {selectedIndex}
+        on:clickedIndex={onClickedIndex} />
     </div>
   </Modal>
 </div>
