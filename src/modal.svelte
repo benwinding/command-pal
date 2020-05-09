@@ -53,69 +53,64 @@
 </script>
 
 <style>
-  .modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: table;
-    transition: opacity 0.3s ease;
-  }
+.modal-container {
+  max-width: 400px;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
-  .modal-wrapper {
-    display: table-cell;
-    width: 100%;
-  }
-
+@media (max-width: 400px) {
   .modal-container {
     max-width: 100%;
-    margin-top: 0;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0px;
-    background-color: #555;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.3s ease;
-    font-family: Helvetica, Arial, sans-serif;
   }
+}
 
-  .search {
-    width: 100%;
-    border: 1px solid #0081cc;
-    height: 20px;
-    outline: none;
-    font-size: 1.1em;
-    background-color: #777;
-    color: #ddd;
-    margin: 0;
-    padding: 14px;
-    padding-left: 6px;
-    box-sizing: border-box;
-    box-shadow: none;
-    border-radius: 0px;
-  }
-  .search::placeholder {
-    color: #aaa;
-    opacity: 1; /* Firefox */
-  }
-  .search-box {
-    padding: 7px;
-  }
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
 
-  .search:focus {
-    color: white;
-  }
-  .hidden {
-    display: none;
-  }
-  @media (min-width: 400px) {
-    .modal-container {
-      max-width: 400px;
-    }
-  }
+.modal-wrapper {
+  display: table-cell;
+  width: 100%;
+}
+.hidden {
+  display: none;
+}
+
+.search {
+  width: 100%;
+  height: 20px;
+  outline: none;
+  font-size: 1.1em;
+  margin: 0;
+  padding: 14px;
+  padding-left: 6px;
+  box-sizing: border-box;
+  box-shadow: none;
+  border-radius: 0px;
+}
+.search::placeholder {
+  opacity: 1; /* Firefox */
+}
+.search-box {
+  padding: 7px;
+}
+/* .search:focus {
+  color: white;
+} */
+
 </style>
 
 <div class="modal-mask" class:hidden={!show}>
