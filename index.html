@@ -30,6 +30,12 @@
   </head>
 
   <body>
+    <link
+      id="app-theme-css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css"
+    />
+    <link id="cp-theme-css" rel="stylesheet" href="./theme-dark.css" />
     <center>
       <h1>&lt; command-pal / &gt;</h1>
       <hr />
@@ -42,6 +48,22 @@
       const c = new CommandPal({
         hotkey: "ctrl+space",
         commands: [
+          {
+            name: "Toggle Dark/Light Theme",
+            shortcut: "ctrl+1",
+            handler: () => {
+              const stylecp = document.getElementById("cp-theme-css");
+              const styleapp = document.getElementById("app-theme-css");
+              const isDark = stylecp.href.includes("dark");
+              if (isDark) {
+                stylecp.href = './theme-light.css';
+                styleapp.href = 'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css';
+              } else {
+                stylecp.href = './theme-dark.css';
+                styleapp.href = 'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css';
+              }
+            },
+          },
           {
             name: "Goto Profile",
             goto: "profile",
