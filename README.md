@@ -3,7 +3,9 @@
 
 ![screen cap](https://i.imgur.com/S305K5Y.gif)
 
-## Features
+## What is a command palette?
+
+Command palettes are incredibly useful, they provide a flexible and efficient way of running commands in an environment. They allow the user to discover functions and quickly lookup functions.
 
 - Similar to VScode's ctrl+p command palette
 - Keyboard first control (configurable)
@@ -57,6 +59,25 @@ const c = new CommandPal({
   ],
 });
 c.start();
+```
+
+## API
+
+Command Item
+
+``` js
+{
+  // Required name of command (displayed)
+  name: "Open Messages",
+  // Shortcut of command
+  shortcut: "ctrl+3",
+  // Callback function of the command to execute
+  handler: (e) => {
+
+  }
+  // 
+  goto: "profile",
+},
 ```
 
 ## Local Development
