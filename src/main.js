@@ -12,8 +12,8 @@ class CommandPal {
     this.app = new App({
       target: document.body,
       props: {
-        shortcutKey: this.options.hotkey || "ctrl+shift+p",
-        items: this.options.commands || [],
+        hotkey: this.options.hotkey || 'ctrl+space',
+        inputData: this.options.commands || [],
       },
     });
     const ctx = this;
@@ -24,12 +24,9 @@ class CommandPal {
     subTo("closed");
     subTo("textChanged");
     subTo("exec");
-    this.ps.subscribe('exec', (item) => {
-      if (item.handler && typeof item.handler === 'function') {
-        item.handler()
-      }
-      if (!!item.goto && typeof item.goto === 'string') {
-        window.location.hash = item.goto;
+    this.ps.subscribe("exec", (item) => {
+      if (item.handler && typeof item.handler === "function") {
+        item.handler();
       }
     });
   }

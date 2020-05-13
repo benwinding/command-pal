@@ -56,17 +56,19 @@
               const styleapp = document.getElementById("app-theme-css");
               const isDark = stylecp.href.includes("dark");
               if (isDark) {
-                stylecp.href = './theme-light.css';
-                styleapp.href = 'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css';
+                stylecp.href = "./theme-light.css";
+                styleapp.href =
+                  "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css";
               } else {
-                stylecp.href = './theme-dark.css';
-                styleapp.href = 'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css';
+                stylecp.href = "./theme-dark.css";
+                styleapp.href =
+                  "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css";
               }
             },
           },
           {
             name: "Goto Profile",
-            goto: "profile",
+            handler: () => (window.location.hash = "profile"),
             shortcut: "ctrl+9",
           },
           {
@@ -76,7 +78,7 @@
           },
           {
             name: "Goto About",
-            goto: "about",
+            handler: () => (window.location.hash = "about"),
             shortcut: "ctrl+7",
           },
           {

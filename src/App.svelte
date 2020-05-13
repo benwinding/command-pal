@@ -1,68 +1,67 @@
 <script>
-  import hotkeys from "hotkeys-js";
   import Fuse from "fuse.js";
-  import Modal from "./modal.svelte";
-  import ItemsFiltered from "./ItemsFiltered.svelte";
-
-  import { onMount, createEventDispatcher } from "svelte";
+  import PaletteContainer from "./PaletteContainer.svelte";
+  import CommandList from "./CommandList.svelte";
+  import SearchField from "./SearchField.svelte";
+  import { setContext, onMount, createEventDispatcher } from "svelte";
+  import { asyncTimeout, setMainShortCut, setAllShortCuts } from "./shortcuts";
   const dispatch = createEventDispatcher();
 
-  const asyncTimeout = ms => new Promise(res => setTimeout(res, ms));
-
-  export let shortcutKey;
-  export let items = [];
+  export let hotkey;
+  export let inputData = [];
   const options = {
     isCaseSensitive: false,
     shouldSort: true,
-    keys: ["name"]
+    keys: ["name", "description"]
   };
 
   let showModal = false;
   let currentText = "";
   let selectedIndex = "";
-  const fuse = new Fuse(items, options);
-
-  let itemsFiltered = items;
+  let items = inputData;
+  let itemsFiltered = inputData;
+  let fuse = new Fuse(items, options);
 
   onMount(() => {
-    console.log("CommandPal.App", { shortcutKey });
-    hotkeys(shortcutKey, function(e) {
-      e.preventDefault();
+    setMainShortCut(hotkey, async () => {
       showModal = true;
+      selectedIndex = 0;
       dispatch("opened");
     });
-    items
-      .filter(item => item.shortcut)
-      .map(item => {
-        hotkeys(item.shortcut, async function(e) {
-          e.preventDefault();
-          showModal = true;
-          dispatch("opened");
-          await asyncTimeout(200);
-          selectedIndex = items.findIndex(i => i.name === item.name)
-          await asyncTimeout(100);
-          onExec({})
-        });
-      });
+    setAllShortCuts(inputData, async (command) => {
+      showModal = true;
+      dispatch("opened");
+      await asyncTimeout(200);
+      selectedIndex = inputData.findIndex(i => i.name === command.name);
+      await asyncTimeout(100);
+      onHandleCommand(command);
+    });
   });
 
-  function onExec(e) {
-    const currentItem = itemsFiltered[selectedIndex];
-    dispatch("exec", currentItem);
-    showModal = false;
+  function onHandleCommand(command) {
+    const hasChildren = command.children;
+    if (hasChildren) {
+      items = command.children;
+      itemsFiltered = items;
+      fuse = new Fuse(items, options);
+    } else {
+      dispatch("exec", command);
+      showModal = false;
+    }
     selectedIndex = 0;
   }
 
   function onClickedIndex(e) {
     selectedIndex = e.detail;
-    const currentItem = itemsFiltered[selectedIndex];
-    dispatch("exec", currentItem);
+    const command = itemsFiltered[selectedIndex];
+    onHandleCommand(command);
   }
-  function onClosed(e) {
-    dispatch("closed");
-    showModal = false;
-    selectedIndex = 0;
+
+  function onKeyEnter(e) {
+    const command = itemsFiltered[selectedIndex];
+    onHandleCommand(command);
   }
+
   function onKeyUp(e) {
     selectedIndex--;
     const minIndex = 0;
@@ -70,6 +69,7 @@
       selectedIndex = minIndex;
     }
   }
+
   function onKeyDown(e) {
     selectedIndex++;
     const maxIndex = itemsFiltered.length - 1;
@@ -77,6 +77,7 @@
       selectedIndex = maxIndex;
     }
   }
+
   function onTextChange(e) {
     const text = e.detail;
     dispatch("textChanged", text);
@@ -88,21 +89,32 @@
       itemsFiltered = fuseResult.map(i => i.item);
     }
   }
+
+  function onClosed(e) {
+    dispatch("closed");
+    items = inputData;
+    // itemsFiltered = items;
+    // showModal = false;
+    // selectedIndex = 0;
+  }
 </script>
 
 <div>
-  <Modal
-    bind:show={showModal}
-    on:closed={onClosed}
-    on:exec={onExec}
-    on:arrowup={onKeyUp}
-    on:arrowdown={onKeyDown}
-    on:textChange={onTextChange}>
+  <PaletteContainer bind:show={showModal}>
+    <div slot="search">
+      <SearchField
+        show={showModal}
+        on:closed={onClosed}
+        on:enter={onKeyEnter}
+        on:arrowup={onKeyUp}
+        on:arrowdown={onKeyDown}
+        on:textChange={onTextChange} />
+    </div>
     <div slot="items">
-      <ItemsFiltered
+      <CommandList
         items={itemsFiltered}
         {selectedIndex}
         on:clickedIndex={onClickedIndex} />
     </div>
-  </Modal>
+  </PaletteContainer>
 </div>

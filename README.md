@@ -1,5 +1,5 @@
 <h1 align="center" style="font-family: mono">command-pal</h1>
-<p align="center">⌨ An embeddable command pallete for the web, inspired by VScode.</p>
+<p align="center">⌨ The hackable command pallete for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
 
 ![screen cap](https://i.imgur.com/S305K5Y.gif)
 
@@ -7,12 +7,10 @@
 
 Command palettes are incredibly useful, they provide a flexible and efficient way of running commands in an environment. They allow the user to discover functions and quickly lookup functions.
 
-- Similar to VScode's ctrl+p command palette
-- Keyboard first control (configurable)
-- Add custom commands
+- Keyboard first control (shortcuts configurable)
+- Custom commands
 - Fuzzy text matching (fuse.js)
-- Small size (<20kb)
-- Themeable
+- Themeable (theme-light.css and theme-dark.css included)
 
 ## Why?
 
@@ -34,27 +32,56 @@ Or use the script tag
 <script src="https://cdn.jsdelivr.net/npm/command-pal"></script>
 ```
 
-## Usage
+## Usage - Simple
 
 ``` js
 const c = new CommandPal({
   hotkey: "ctrl+space",
   commands: [
     {
-      name: "Goto Profile",
-      goto: "profile",
-    },
-    {
       name: "Send Message",
-      run: () => alert("Send Message"),
-    },
-    {
-      name: "Goto About",
-      goto: "about",
+      handler: () => alert("Send Message"),
     },
     {
       name: "Search Contacts",
-      run: () => alert("Searching contacts..."),
+      handler: () => alert("Searching contacts..."),
+    },
+    {
+      name: "Goto Profile",
+      shortcut: "ctrl+4",
+      handler: () => window.location.hash = "profile",
+    },
+    {
+      name: "Goto About",
+      handler: () => window.location.hash = "about",
+    },
+  ],
+});
+c.start();
+```
+
+## Usage - Avanced
+
+``` js
+const c = new CommandPal({
+  hotkey: "ctrl+space",
+  commands: [
+    {
+      name: "Change Language",
+      children: [
+        {
+          name: "English",
+          handler: () => alert("Changing to English")
+        },
+        {
+          name: "Spanglish",
+          handler: () => alert("Changing to Spanglish")
+        }
+      ]
+    },
+    {
+      name: "Goto About",
+      handler: () => window.location.hash = "about",
     },
   ],
 });
@@ -63,20 +90,39 @@ c.start();
 
 ## API
 
-Command Item
+### Command Item
 
 ``` js
 {
   // Required name of command (displayed)
   name: "Open Messages",
+  // Required name of command (displayed)
+  description: "View all messages in inbox",
   // Shortcut of command
   shortcut: "ctrl+3",
   // Callback function of the command to execute
   handler: (e) => {
-
+    // DO SOMETHING
   }
-  // 
-  goto: "profile",
+  // Child commands which can be executed
+  children: [...]
+},
+```
+
+### Command Item Child
+
+Note: Child commands cannot have shortcuts.
+
+``` js
+{
+  // Required name of command (displayed)
+  name: "Open Messages",
+  // Required name of command (displayed)
+  description: "View all messages in inbox",
+  // Callback function of the command to execute
+  handler: (e) => {
+    // DO SOMETHING
+  }
 },
 ```
 
