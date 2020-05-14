@@ -93,9 +93,9 @@
   function onClosed(e) {
     dispatch("closed");
     items = inputData;
-    // itemsFiltered = items;
-    // showModal = false;
-    // selectedIndex = 0;
+    itemsFiltered = items;
+    showModal = false;
+    selectedIndex = 0;
   }
 </script>
 
