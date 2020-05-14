@@ -16,52 +16,73 @@
   }
 
   function checkSelectedIndexInView() {
+    const log = obj => {
+      console.log(JSON.stringify(obj, null, 2));
+    };
+
     const listItemEl = listEl.querySelector(".items-list .selected");
     const isPressingDownArrow = 0 < selectedIndex - selectedIndexLast;
     selectedIndexLast = selectedIndex;
     const isPressingUpArrow = !isPressingDownArrow;
 
-    // const isAtScrollBeginning = listEl.scrollTop === 0;
-    const isWithinBeginning = listItemEl.offsetTop < listEl.clientHeight - 36;
-    const isWithinMiddle =
-      listItemEl.offsetTop < listItemEl.offsetTop - listEl.clientHeight + 36*2 &&
-      listItemEl.offsetTop > 0;
-    const isWithinEnd =
-      listItemEl.offsetTop < listItemEl.offsetTop - listEl.clientHeight + 36*2 &&
-      listItemEl.offsetTop > 0;
-    console.log({ isWithinBeginning, isWithinMiddle, isWithinEnd });
-    // if (isAtScrollBeginning && isWithinBeginning) {
-    //   return;
-    // }
-    // if (!isWithinBeginning && isPressingDownArrow) {
-    //   listEl.scrollTop = listItemEl.offsetTop - listEl.clientHeight + 36;
-    //   return;
-    // }
-    // if (!isWithinMiddle && isPressingUpArrow) {
-    //   listEl.scrollTop = listItemEl.offsetTop - listEl.clientHeight + 36;
-    //   return;
-    // }
+    function pick(obj, keys) {
+      return keys.reduce((acc, key) => {
+        acc[key] = obj[key];
+        return acc;
+      }, {});
+    }
 
-    // const currentScrollHeight = listEl.scrollTop;
-    // const currentElementOffset = listItemEl.offsetTop;
-    // const itemOffset = currentElementOffset - currentScrollHeight;
-    // const isItemWithinView = itemOffset > 0 && itemOffset < listHeight;
+    const viewTop = listEl.scrollTop + 36;
+    const viewBottom = listEl.scrollTop + listEl.clientHeight;
+    const itemTop = listItemEl.offsetTop - 8;
+    const viewTopIdealPressingDown = itemTop - listEl.clientHeight;
+    const viewTopIdealPressingUp = itemTop - 36;
+    const isWithinView = itemTop <= viewBottom && itemTop >= viewTop;
 
-    // const isScrolledTop = currentScrollHeight === 0;
+    log({
+      view: {
+        top: viewTop,
+        bottom: viewBottom,
+      },
+      isPressingDownArrow,
+      pressingDown: {
+        top: viewTopIdealPressingDown,
+      },
+      pressingUp: {
+        top: viewTopIdealPressingUp,
+      },
+      itemTop,
+      isWithinView,
+      listEl: pick(listEl, [
+        "clientHeight",
+        "scrollHeight",
+        "scrollTop",
+        "offsetTop"
+      ]),
+      listItemEl: pick(listItemEl, [
+        "clientHeight",
+        "scrollHeight",
+        "scrollTop",
+        "offsetTop"
+      ])
+    });
 
-    // const shouldScrollDown = isPressingDownArrow && currentElementOffset > (listHeight - 100);
-    // const shouldScrollUp = !isPressingDownArrow && currentElementOffset > (listHeight - 100);
-    // if (shouldScrollDown) {
-    // listEl.scrollTop = listItemEl.offsetTop - listHeight + 150;
-    // }
-    // else if (!isPressingDownArrow && currentElementOffset) {
-    //   listEl.scrollTop = (listItemEl.offsetTop - 50);
-    // }
+    if (isWithinView) {
+      return
+    }
+
+    if (isPressingDownArrow) {
+      listEl.scrollTop = viewTopIdealPressingDown;
+    }
+    if (isPressingUpArrow) {
+      listEl.scrollTop = viewTopIdealPressingUp;
+    }
+
   }
 
   $: {
     if (listEl && selectedIndexLast != selectedIndex)
-      checkSelectedIndexInView();
+      setTimeout(() => checkSelectedIndexInView(), 30);
   }
 </script>
 
@@ -71,7 +92,8 @@
     align-items: center;
     justify-content: space-between;
     margin: 0px;
-    padding: 7px;
+    padding: 0px 7px;
+    height: 36px;
   }
   .item:hover {
     cursor: pointer;
