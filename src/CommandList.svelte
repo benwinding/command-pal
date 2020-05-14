@@ -39,34 +39,6 @@
     const viewTopIdealPressingUp = itemTop - 36;
     const isWithinView = itemTop <= viewBottom && itemTop >= viewTop;
 
-    log({
-      view: {
-        top: viewTop,
-        bottom: viewBottom,
-      },
-      isPressingDownArrow,
-      pressingDown: {
-        top: viewTopIdealPressingDown,
-      },
-      pressingUp: {
-        top: viewTopIdealPressingUp,
-      },
-      itemTop,
-      isWithinView,
-      listEl: pick(listEl, [
-        "clientHeight",
-        "scrollHeight",
-        "scrollTop",
-        "offsetTop"
-      ]),
-      listItemEl: pick(listItemEl, [
-        "clientHeight",
-        "scrollHeight",
-        "scrollTop",
-        "offsetTop"
-      ])
-    });
-
     if (isWithinView) {
       return
     }
@@ -82,7 +54,7 @@
 
   $: {
     if (listEl && selectedIndexLast != selectedIndex)
-      setTimeout(() => checkSelectedIndexInView(), 30);
+      setTimeout(() => checkSelectedIndexInView());
   }
 </script>
 
