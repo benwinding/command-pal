@@ -74,9 +74,16 @@
     overflow-y: auto;
     max-height: 360px;
   }
+  .no-matches {
+    margin: 5px 0px;
+    padding: 0px 7px;
+  }
 </style>
 
 <div class="items-list" bind:this={listEl}>
+  {#if !items.length} 
+    <p class="no-matches">No matching commands...</p>
+  {/if}
   {#each items as item, index}
     <p
       class="item"
