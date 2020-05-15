@@ -1,4 +1,4 @@
-<h1 align="center" style="font-family: mono">command-pal</h1>
+<h1 align="center" style="font-family: mono">command-pal.js</h1>
 <p align="center">⌨ The hackable command pallete for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
 
 ![screen cap](https://i.imgur.com/S305K5Y.gif)
