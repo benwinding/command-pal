@@ -38,12 +38,20 @@
     });
   });
 
+  function setItems(newItems) {
+    items = newItems;
+    itemsFiltered = items;
+    fuse = new Fuse(items, options);
+  }
+
   function onHandleCommand(command) {
-    const hasChildren = command.children;
+    if (!command) {
+      return;
+    }
+    const hasChildren = Array.isArray(command.children) 
+      && command.children.length;
     if (hasChildren) {
-      items = command.children;
-      itemsFiltered = items;
-      fuse = new Fuse(items, options);
+      setItems(command.children);
     } else {
       dispatch("exec", command);
       showModal = false;
@@ -92,8 +100,7 @@
 
   function onClosed(e) {
     dispatch("closed");
-    items = inputData;
-    itemsFiltered = items;
+    setItems(inputData);
     showModal = false;
     selectedIndex = 0;
   }
