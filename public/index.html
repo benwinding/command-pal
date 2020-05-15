@@ -265,7 +265,10 @@
           },
           {
             name: "Destroy Instance",
-            handler: () => (c.destroy()),
+            handler: () => {
+              if (confirm('Shutdown command-pal instance?'))
+                c.destroy();
+            },
           },
         ],
       });
