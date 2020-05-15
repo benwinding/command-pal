@@ -18,7 +18,8 @@
         border: 1px solid #dbdbdb;
       }
       pre {
-        background-color: black;
+        background-color: #111;
+        color: #dbdbdb;
         border-radius: 4px;
         padding: 5px;
       }
@@ -261,6 +262,13 @@
             name: "Goto About",
             shortcut: "ctrl+d",
             handler: () => (window.location.hash = "about"),
+          },
+          {
+            name: "Destroy Instance",
+            handler: () => {
+              if (confirm('Shutdown command-pal instance?'))
+                c.destroy();
+            },
           },
         ],
       });
