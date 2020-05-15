@@ -34,6 +34,10 @@ class CommandPal {
   subscribe(eventName, cb) {
     this.ps.subscribe(eventName, (e) => cb(e));
   }
+
+  destroy() {
+    this.app.$destroy()
+  }
 }
 
 export default CommandPal;
