@@ -17,6 +17,8 @@
   };
 
   let showModal = false;
+  let searchField;
+  let loadingChildren = false;
   let currentText = "";
   let selectedIndex = "";
   let items = inputData;
@@ -29,7 +31,7 @@
       selectedIndex = 0;
       dispatch("opened");
     });
-    setAllShortCuts(inputData, async (command) => {
+    setAllShortCuts(inputData, async command => {
       showModal = true;
       dispatch("opened");
       await asyncTimeout(200);
@@ -45,14 +47,19 @@
     fuse = new Fuse(items, options);
   }
 
-  function onHandleCommand(command) {
+  async function onHandleCommand(command) {
     if (!command) {
       return;
     }
-    const hasChildren = Array.isArray(command.children) 
-      && command.children.length;
+    const hasChildren =
+      Array.isArray(command.children) && command.children.length;
     if (hasChildren) {
+      showModal = true;
+      loadingChildren = true;
       setItems(command.children);
+      await asyncTimeout(200)
+      searchField.focus()
+      loadingChildren = false;
     } else {
       dispatch("exec", command);
       showModal = false;
@@ -101,11 +108,15 @@
     }
   }
 
-  function onClosed(e) {
+  async function onClosed(e) {
+    await asyncTimeout(10)
+    if (loadingChildren) {
+      return;
+    }
     dispatch("closed");
+    selectedIndex = 0;
     setItems(inputData);
     showModal = false;
-    selectedIndex = 0;
   }
 
   function onMobileClick(e) {
@@ -116,13 +127,13 @@
 </script>
 
 <div>
-  <MobileButton 
-    on:click={onMobileClick}
-  />
+  <span>loadingChildren={loadingChildren}</span>
+  <MobileButton on:click={onMobileClick} />
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
       <SearchField
         show={showModal}
+        bind:inputEl={searchField}
         on:closed={onClosed}
         on:enter={onKeyEnter}
         on:arrowup={onKeyUp}

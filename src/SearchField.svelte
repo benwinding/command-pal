@@ -3,9 +3,9 @@
   const dispatch = createEventDispatcher();
 
   export let show;
+  export let inputEl;
 
   let inputValue;
-  let inputEl;
 
   const getUUID = () =>
     Math.random()
