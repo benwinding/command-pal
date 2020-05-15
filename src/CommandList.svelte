@@ -16,21 +16,16 @@
   }
 
   function checkSelectedIndexInView() {
-    const log = obj => {
-      console.log(JSON.stringify(obj, null, 2));
-    };
-
+    if (!listEl) {
+      return;
+    }
     const listItemEl = listEl.querySelector(".items-list .selected");
+    if (!listItemEl) {
+      return;
+    }
     const isPressingDownArrow = 0 < selectedIndex - selectedIndexLast;
     selectedIndexLast = selectedIndex;
     const isPressingUpArrow = !isPressingDownArrow;
-
-    function pick(obj, keys) {
-      return keys.reduce((acc, key) => {
-        acc[key] = obj[key];
-        return acc;
-      }, {});
-    }
 
     const viewTop = listEl.scrollTop + 36;
     const viewBottom = listEl.scrollTop + listEl.clientHeight;
@@ -53,7 +48,7 @@
   }
 
   $: {
-    if (listEl && selectedIndexLast != selectedIndex)
+    if (selectedIndexLast != selectedIndex)
       setTimeout(() => checkSelectedIndexInView());
   }
 </script>
