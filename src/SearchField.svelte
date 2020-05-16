@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
+  import { asyncTimeout } from "./shortcuts";
 
   export let show;
   export let inputEl;
@@ -31,18 +32,9 @@
     }
   }
 
-  function onKeyUp(e) {
-    const keyCode = e.code.toLowerCase();
-    if (
-      keyCode.includes("space") ||
-      keyCode.includes("backspace") ||
-      keyCode.includes("delete") ||
-      keyCode.startsWith("key") ||
-      keyCode.startsWith("digit") ||
-      keyCode.startsWith("numpad")
-    ) {
-      dispatch("textChange", inputValue);
-    }
+  async function onTextChanged(e) {
+    await asyncTimeout(10)
+    dispatch("textChange", inputValue);
   }
 
   $: {
@@ -79,7 +71,7 @@
   name={inputName}
   on:blur={onBlur}
   on:keydown={onKeyDown}
-  on:keyup={onKeyUp}
+  on:input={onTextChanged}
   autocomplete="no"
   type="text"
   placeholder="What are you looking for?" />
