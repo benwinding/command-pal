@@ -12,8 +12,8 @@ Command palettes are incredibly useful, they provide a flexible and efficient wa
 - Fuzzy text matching (fuse.js)
 - Themeable (theme-light.css and theme-dark.css included)
 
-- [Demo](https://benwinding.github.io/command-pal/demo-advanced)
-- [Demo Simple](https://benwinding.github.io/command-pal/demo-simple)
+- [Demo](https://benwinding.github.io/command-pal/demos/_advanced)
+- [Demo Simple](https://benwinding.github.io/command-pal/demos/_simple)
 
 ## Why?
 

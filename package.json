@@ -12,7 +12,7 @@
     "dev": "rollup -c -w",
     "start": "sirv public",
     "build-docs": "docpress b && cp -r _docpress dist/docs",
-    "build-demo": "rollup -c && cp -r public dist/demo",
+    "build-demo": "rollup -c && cp -r public dist/demos",
     "build-all": "npm run clean && npm run build-demo && npm run build-docs",
     "clean": "rm -rf dist _docpress && mkdir dist",
     "deploy-all": "npm run build-all && gh-pages -d dist"
