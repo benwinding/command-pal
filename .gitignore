@@ -1,4 +1,6 @@
 /node_modules/
 /public/build/
+public/build
 dist
 .DS_Store
+_docpress

@@ -11,13 +11,17 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
-    "deploy-demo": "npm run build && gh-pages -d public"
+    "build-docs": "docpress b && cp -r _docpress dist/docs",
+    "build-demo": "rollup -c && cp -r public dist/demo",
+    "build-all": "mkdir dist; npm run build-demo && npm run build-docs",
+    "deploy-all": "npm run build-all && gh-pages -d public"
   },
   "homepage": "https://github.com/benwinding/command-pal",
   "repository": "git@github.com:benwinding/command-pal.git",
   "devDependencies": {
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "docpress": "^0.8.1",
     "gh-pages": "^2.2.0",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
