@@ -13,7 +13,8 @@
     "start": "sirv public",
     "build-docs": "docpress b && cp -r _docpress dist/docs",
     "build-demo": "rollup -c && cp -r public dist/demo",
-    "build-all": "mkdir dist; npm run build-demo && npm run build-docs",
+    "build-all": "npm run clean && npm run build-demo && npm run build-docs",
+    "clean": "rm -rf dist _docpress && mkdir dist",
     "deploy-all": "npm run build-all && gh-pages -d dist"
   },
   "homepage": "https://github.com/benwinding/command-pal",
