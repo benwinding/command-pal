@@ -127,7 +127,6 @@
 </script>
 
 <div>
-  <span>loadingChildren={loadingChildren}</span>
   <MobileButton on:click={onMobileClick} />
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
