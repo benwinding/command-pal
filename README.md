@@ -1,16 +1,35 @@
 <h1 align="center" style="font-family: mono">command-pal</h1>
 <p align="center">⌨ The hackable command pallete for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
 
-![screen cap](https://i.imgur.com/S305K5Y.gif)
+![screen cap](https://i.imgur.com/jhJjLVL.gif)
 
-## What is a command palette?
+## Benefit's of Command Palettes
 
-Command palettes are incredibly useful, they provide a flexible and efficient way of running commands in an environment. They allow the user to discover functions and quickly lookup functions.
+- **Ease of use**
+	- Simply 1 keyboard shortcut to remember
+	- Fuzzy search allows you to find commands easily
+- **Speed**
+	- Keyboard makes it fast to access any command/function
+	- Fuzzy search allows for quick ordering of commands
+	- Efficient to find a commands that you used once a long time ago
+- **Discoverability**
+	- You can scroll down the entire list of commands
+	- Find commands by simply searching the Command Pallete
+	- Tips and functions can be given to you as you type
 
+## Features
+
+- JS framework agnostic (can be attached to any site)
 - Keyboard first control (shortcuts configurable)
 - Custom commands
+- Nested commands
 - Fuzzy text matching (fuse.js)
 - Themeable (theme-light.css and theme-dark.css included)
+- Mobile friendly (button in bottom-left)
+
+![screen cap](https://i.imgur.com/Bb6njpV.gif)
+
+**Links**
 
 - [Demo](https://benwinding.github.io/command-pal/demos/cp-advanced)
 - [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
@@ -18,13 +37,11 @@ Command palettes are incredibly useful, they provide a flexible and efficient wa
 
 ## Why?
 
-The command palette is an amazing GUI concept which allows for ...
+_Command Palettes_ have alwyas impressed me with how easy they are to use and develop for. I rarely see them on the web platform, so I thought I'd give it a shot.
 
-## Who?
+## Get Started
 
-Most people
-
-## Installation
+### Install
 
 Either install from npm
 
@@ -36,7 +53,7 @@ Or use the script tag
 <script src="https://cdn.jsdelivr.net/npm/command-pal"></script>
 ```
 
-## Usage - Simple
+### Usage - Simple
 
 ``` js
 const c = new CommandPal({
@@ -44,6 +61,7 @@ const c = new CommandPal({
   commands: [
     {
       name: "Send Message",
+      shortcut: "ctrl+m",
       handler: () => alert("Send Message"),
     },
     {
@@ -55,16 +73,12 @@ const c = new CommandPal({
       shortcut: "ctrl+4",
       handler: () => window.location.hash = "profile",
     },
-    {
-      name: "Goto About",
-      handler: () => window.location.hash = "about",
-    },
   ],
 });
 c.start();
 ```
 
-## Usage - Avanced
+### Usage - Avanced
 
 ``` js
 const c = new CommandPal({
@@ -93,6 +107,34 @@ c.start();
 ```
 
 ## API
+
+### CommandPal instance
+``` js
+const c = new CommandPal({
+  hotkey: "ctrl+space",
+  commands: [
+    // Commands go here
+  ]
+});
+// Start the instance
+c.start()
+// Destroy the instance
+c.destroy()
+```
+
+### Subscribe to events
+There's a few events that can be subscribed to during command-pal's execution.
+
+``` js
+// When a command is executed
+c.subscribe("exec", (e) => { console.log("exec", { e }); });
+// On TextChanged
+c.subscribe("textChanged", (e) => { console.log("textChanged", { e }); });
+// When a command palette is opened
+c.subscribe("opened", (e) => { console.log("opened", { e }); });
+// When a command palette is closed
+c.subscribe("closed", (e) => { console.log("closed", { e }); });
+```
 
 ### Command Item
 
@@ -137,3 +179,25 @@ To develop on `command-pal` simply clone, install and run
 ```
 npm run dev
 ```
+
+Have a go, PR's and issues always welcome.
+
+## Prior Art
+Many applications have implemented this before, here's a few. My favourite implementation is the VScode, which is the main influence for this project.
+
+**Editors**
+
+- [VScode (Text Editor)](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-palette)
+- [Sublime (Text Editor)](https://www.sublimetext.com/)
+- [Atom (Text Editor)](https://atom.io/packages/command-palette)
+- [Webstorm's Search Everywhere (IDE)](https://www.jetbrains.com/help/webstorm/searching-everywhere.html?search=search)
+- [Caret (Markdown Editor)](https://caret.io/v2)
+- [Commander (Eclipse Plugin)](https://github.com/dakaraphi/eclipse-plugin-commander#kavi-implemented-features-for-all-interfaces)
+
+**Misc**
+
+- [Fman (File Manager)](https://fman.io/)
+- [Plotinus (GTK desktop extension)](https://github.com/p-e-w/plotinus)
+- [command-palette (Wordpress Extension)](https://wordpress.org/plugins/command-palette/)
+- [Vimium (Browser Extension)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
+- [JupyterLab (Notebook)](https://jupyterlab.readthedocs.io/en/stable/user/commands.html)
