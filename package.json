@@ -1,6 +1,6 @@
 {
   "name": "command-pal",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "files": [
     "src",
     "README.md",
@@ -17,6 +17,7 @@
     "clean": "rm -rf dist _docpress && mkdir dist",
     "deploy-all": "npm run build-all && gh-pages -d dist"
   },
+  "license": "MIT",
   "homepage": "https://github.com/benwinding/command-pal",
   "repository": "git@github.com:benwinding/command-pal.git",
   "devDependencies": {
