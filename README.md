@@ -1,5 +1,5 @@
 <h1 align="center" style="font-family: mono">command-pal</h1>
-<p align="center">⌨ The hackable command pallete for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
+<p align="center">⌨ The hackable command palette for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
 
 ![screen cap](https://i.imgur.com/jhJjLVL.gif)
 
@@ -14,7 +14,7 @@
 	- Efficient to find a commands that you used once a long time ago
 - **Discoverability**
 	- You can scroll down the entire list of commands
-	- Find commands by simply searching the Command Pallete
+	- Find commands by simply searching the Command palette
 	- Tips and functions can be given to you as you type
 
 ## Features
