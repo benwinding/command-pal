@@ -8,9 +8,14 @@
         "slug": "index",
         "headings": [
           {
-            "title": "What is a command palette?",
+            "title": "What does a _Command Palette_ give you?",
             "depth": 2,
-            "id": "what-is-a-command-palette"
+            "id": "what-does-a-_command-palette_-give-you"
+          },
+          {
+            "title": "Features",
+            "depth": 2,
+            "id": "features"
           },
           {
             "title": "Why?",
@@ -58,6 +63,11 @@
             "title": "Local Development",
             "depth": 2,
             "id": "local-development"
+          },
+          {
+            "title": "Prior Art",
+            "depth": 2,
+            "id": "prior-art"
           }
         ]
       }
@@ -71,9 +81,14 @@
       "slug": "index",
       "headings": [
         {
-          "title": "What is a command palette?",
+          "title": "What does a _Command Palette_ give you?",
           "depth": 2,
-          "id": "what-is-a-command-palette"
+          "id": "what-does-a-_command-palette_-give-you"
+        },
+        {
+          "title": "Features",
+          "depth": 2,
+          "id": "features"
         },
         {
           "title": "Why?",
@@ -121,6 +136,11 @@
           "title": "Local Development",
           "depth": 2,
           "id": "local-development"
+        },
+        {
+          "title": "Prior Art",
+          "depth": 2,
+          "id": "prior-art"
         }
       ]
     }

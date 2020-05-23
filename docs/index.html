@@ -16,7 +16,9 @@
             <ul class="submenu">
               <li class="menu-item -level-1"><a class="link title -active link-index" href="index.html">command-pal</a>
                 <ul class="headings heading-list">
-                  <li class="heading-item -depth-2"><a class="hlink link-what-is-a-command-palette" href="#what-is-a-command-palette">What is a command palette?</a>
+                  <li class="heading-item -depth-2"><a class="hlink link-what-does-a-_command-palette_-give-you" href="#what-does-a-_command-palette_-give-you">What does a _Command Palette_ give you?</a>
+                  </li>
+                  <li class="heading-item -depth-2"><a class="hlink link-features" href="#features">Features</a>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-why" href="#why">Why?</a>
                   </li>
@@ -38,6 +40,8 @@
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-local-development" href="#local-development">Local Development</a>
                   </li>
+                  <li class="heading-item -depth-2"><a class="hlink link-prior-art" href="#prior-art">Prior Art</a>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -52,30 +56,46 @@
         <div class="markdown-body"><h1 align="center" style="font-family: mono" id="command-pal">command-pal</h1>
 <p align="center">&#x2328; The hackable command pallete for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
 <p><img src="https://i.imgur.com/S305K5Y.gif" alt="screen cap"></p>
-<h2 id="what-is-a-command-palette">What is a command palette?</h2>
-<p>Command palettes are incredibly useful, they provide a flexible and efficient way of running commands in an environment. They allow the user to discover functions and quickly lookup functions.</p>
+<h2 id="what-does-a-command-palette-give-you">What does a <em>Command Palette</em> give you?</h2>
 <ul>
-<li>
-<p>Keyboard first control (shortcuts configurable)</p>
+<li><strong>Ease of use</strong>
+<ul>
+<li>Simply 1 keyboard shortcut to remember</li>
+<li>Fuzzy search allows you to find commands easily</li>
+</ul>
 </li>
-<li>
-<p>Custom commands</p>
+<li><strong>Speed</strong>
+<ul>
+<li>Keyboard makes it fast to access any command/function</li>
+<li>Fuzzy search allows for quick ordering of commands</li>
+<li>Efficient to find a commands that you used once a long time ago</li>
+</ul>
 </li>
-<li>
-<p>Fuzzy text matching (fuse.js)</p>
-</li>
-<li>
-<p>Themeable (theme-light.css and theme-dark.css included)</p>
-</li>
-<li>
-<p><a href="https://benwinding.github.io/command-pal/demos/cp-advanced">Demo</a></p>
-</li>
-<li>
-<p><a href="https://benwinding.github.io/command-pal/demos/cp-simple">Demo Simple</a></p>
+<li><strong>Discoverability</strong>
+<ul>
+<li>You can scroll down the entire list of commands</li>
+<li>Find commands by simply searching the Command Pallete</li>
+<li>Tips and functions can be given to you as you type</li>
+</ul>
 </li>
 </ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>JS framework agnostic (can be attached to any site)</li>
+<li>Keyboard first control (shortcuts configurable)</li>
+<li>Custom commands</li>
+<li>Nested commands</li>
+<li>Fuzzy text matching (fuse.js)</li>
+<li>Themeable (theme-light.css and theme-dark.css included)</li>
+</ul>
+<p><strong>Links</strong></p>
+<ul>
+<li><a href="https://benwinding.github.io/command-pal/demos/cp-advanced">Demo</a></li>
+<li><a href="https://benwinding.github.io/command-pal/demos/cp-simple">Demo Simple</a></li>
+<li><a href="https://codepen.io/benaloney/pen/BaobQmd">Code Pen</a></li>
+</ul>
 <h2 id="why">Why?</h2>
-<p>The command palette is an amazing GUI concept which allows for ...</p>
+<p>The command palette is an amazing GUI concept which allows</p>
 <h2 id="who">Who?</h2>
 <p>Most people</p>
 <h2 id="installation">Installation</h2>
@@ -90,6 +110,7 @@
   <span class="hljs-attr">commands</span>: [
     {
       <span class="hljs-attr">name</span>: <span class="pl-s">&quot;Send Message&quot;</span>,
+      <span class="hljs-attr">shortcut</span>: <span class="pl-s">&quot;ctrl+m&quot;</span>,
       <span class="hljs-attr">handler</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> alert(<span class="pl-s">&quot;Send Message&quot;</span>),
     },
     {
@@ -100,10 +121,6 @@
       <span class="hljs-attr">name</span>: <span class="pl-s">&quot;Goto Profile&quot;</span>,
       <span class="hljs-attr">shortcut</span>: <span class="pl-s">&quot;ctrl+4&quot;</span>,
       <span class="hljs-attr">handler</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="pl-c1">window</span>.location.hash = <span class="pl-s">&quot;profile&quot;</span>,
-    },
-    {
-      <span class="hljs-attr">name</span>: <span class="pl-s">&quot;Goto About&quot;</span>,
-      <span class="hljs-attr">handler</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="pl-c1">window</span>.location.hash = <span class="pl-s">&quot;about&quot;</span>,
     },
   ],
 });
@@ -168,6 +185,25 @@ c.start();
 <p>To develop on <code>command-pal</code> simply clone, install and run</p>
 <pre><code>npm run dev
 </code></pre>
+<h2 id="prior-art">Prior Art</h2>
+<p>Many applications have implemented this before, here&apos;s a few. My favourite implementation is the VScode, which is the main influence for this project.</p>
+<p><strong>Editors</strong></p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-palette">VScode (Text Editor)</a></li>
+<li><a href="https://www.sublimetext.com/">Sublime (Text Editor)</a></li>
+<li><a href="https://atom.io/packages/command-palette">Atom (Text Editor)</a></li>
+<li><a href="https://www.jetbrains.com/help/webstorm/searching-everywhere.html?search=search">Webstorm&apos;s Search Everywhere (IDE)</a></li>
+<li><a href="https://caret.io/v2">Caret (Markdown Editor)</a></li>
+<li><a href="https://github.com/dakaraphi/eclipse-plugin-commander#kavi-implemented-features-for-all-interfaces">Commander (Eclipse Plugin)</a></li>
+</ul>
+<p><strong>Misc</strong></p>
+<ul>
+<li><a href="https://fman.io/">Fman (File Manager)</a></li>
+<li><a href="https://github.com/p-e-w/plotinus">Plotinus (GTK desktop extension)</a></li>
+<li><a href="https://wordpress.org/plugins/command-palette/">command-palette (Wordpress Extension)</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb">Vimium (Browser Extension)</a></li>
+<li><a href="https://jupyterlab.readthedocs.io/en/stable/user/commands.html">JupyterLab (Notebook)</a></li>
+</ul>
 
         </div>
       </div>
