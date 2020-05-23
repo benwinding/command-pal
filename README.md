@@ -14,6 +14,7 @@ Command palettes are incredibly useful, they provide a flexible and efficient wa
 
 - [Demo](https://benwinding.github.io/command-pal/demos/cp-advanced)
 - [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
+- [Code Pen](https://codepen.io/benaloney/pen/BaobQmd)
 
 ## Why?
 

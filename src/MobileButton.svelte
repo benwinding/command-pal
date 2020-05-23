@@ -5,7 +5,7 @@
 
 <style>
   .mobile-button {
-    position: absolute;
+    position: fixed;
     left: 5px;
     bottom: 5px;
     margin: 0px;

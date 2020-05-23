@@ -3,15 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Command Pal!</title>
-
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <title>Command Pal - Simple Example</title>
+    <!-- Example stuff (not required) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css"
     />
-
-    <link rel="icon" type="image/png" href="../favicon.png" />
-    <script src="../build/bundle.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
 
     <style>
       kbd {
@@ -30,12 +33,6 @@
   </head>
 
   <body>
-    <link
-      id="app-theme-css"
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css"
-    />
-    <link id="cp-theme-css" rel="stylesheet" href="../theme-dark.css" />
     <center>
       <h1>&lt; command-pal / &gt;</h1>
       <hr />
@@ -43,7 +40,18 @@
     </center>
     <h2>Subscribed Output</h2>
     <pre id="output">try it out...</pre>
+    <details>
+      <summary>View Source Code</summary>
+      <pre id="cp-code-show"></pre>
+    </details>
 
+    <!-- head -->
+  <div id="cp-head">
+    <script src="https://cdn.jsdelivr.net/npm/command-pal@0.2.2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/command-pal@0.2.2/public/theme-dark.css">
+  </div>
+    <!-- body -->
+    <div id="cp-body">
     <script>
       const c = new CommandPal({
         hotkey: "ctrl+space",
@@ -79,6 +87,22 @@
       });
       c.subscribe("opened", (e) => console.log("opened", { e }));
       c.subscribe("closed", (e) => console.log("closed", { e }));
+    </script>
+  </div>
+
+    <script>
+      const exampleHead = document.getElementById("cp-head").innerHTML;
+      const exampleCode = document.getElementById("cp-body").innerHTML;
+
+      const exampleDoc = `<html>
+  <head>${exampleHead}</head>
+  <body>${exampleCode}</body>
+</html>`
+
+      const highlighted = hljs.highlightAuto(exampleDoc);
+      console.log({ highlighted });
+      const codeOutput = document.getElementById("cp-code-show");
+      codeOutput.innerHTML = highlighted.value;
     </script>
   </body>
 </html>
