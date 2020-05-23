@@ -65,11 +65,11 @@
               const styleapp = document.getElementById("app-theme-css");
               const isDark = stylecp.href.includes("dark");
               if (isDark) {
-                stylecp.href = "./theme-light.css";
+                stylecp.href = "https://cdn.jsdelivr.net/npm/command-pal@0.2.2/public/theme-light.css";
                 styleapp.href =
                   "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css";
               } else {
-                stylecp.href = "./theme-dark.css";
+                stylecp.href = "https://cdn.jsdelivr.net/npm/command-pal@0.2.2/public/theme-dark.css";
                 styleapp.href =
                   "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css";
               }
