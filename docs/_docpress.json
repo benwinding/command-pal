@@ -8,9 +8,9 @@
         "slug": "index",
         "headings": [
           {
-            "title": "What does a _Command Palette_ give you?",
+            "title": "Benefit's of Command Palettes",
             "depth": 2,
-            "id": "what-does-a-_command-palette_-give-you"
+            "id": "benefit's-of-command-palettes"
           },
           {
             "title": "Features",
@@ -23,30 +23,42 @@
             "id": "why"
           },
           {
-            "title": "Who?",
+            "title": "Get Started",
             "depth": 2,
-            "id": "who"
-          },
-          {
-            "title": "Installation",
-            "depth": 2,
-            "id": "installation"
-          },
-          {
-            "title": "Usage - Simple",
-            "depth": 2,
-            "id": "usage-simple"
-          },
-          {
-            "title": "Usage - Avanced",
-            "depth": 2,
-            "id": "usage-avanced"
+            "id": "get-started",
+            "headings": [
+              {
+                "title": "Install",
+                "depth": 3,
+                "id": "install"
+              },
+              {
+                "title": "Usage - Simple",
+                "depth": 3,
+                "id": "usage-simple"
+              },
+              {
+                "title": "Usage - Avanced",
+                "depth": 3,
+                "id": "usage-avanced"
+              }
+            ]
           },
           {
             "title": "API",
             "depth": 2,
             "id": "api",
             "headings": [
+              {
+                "title": "CommandPal instance",
+                "depth": 3,
+                "id": "commandpal-instance"
+              },
+              {
+                "title": "Subscribe to events",
+                "depth": 3,
+                "id": "subscribe-to-events"
+              },
               {
                 "title": "Command Item",
                 "depth": 3,
@@ -81,9 +93,9 @@
       "slug": "index",
       "headings": [
         {
-          "title": "What does a _Command Palette_ give you?",
+          "title": "Benefit's of Command Palettes",
           "depth": 2,
-          "id": "what-does-a-_command-palette_-give-you"
+          "id": "benefit's-of-command-palettes"
         },
         {
           "title": "Features",
@@ -96,30 +108,42 @@
           "id": "why"
         },
         {
-          "title": "Who?",
+          "title": "Get Started",
           "depth": 2,
-          "id": "who"
-        },
-        {
-          "title": "Installation",
-          "depth": 2,
-          "id": "installation"
-        },
-        {
-          "title": "Usage - Simple",
-          "depth": 2,
-          "id": "usage-simple"
-        },
-        {
-          "title": "Usage - Avanced",
-          "depth": 2,
-          "id": "usage-avanced"
+          "id": "get-started",
+          "headings": [
+            {
+              "title": "Install",
+              "depth": 3,
+              "id": "install"
+            },
+            {
+              "title": "Usage - Simple",
+              "depth": 3,
+              "id": "usage-simple"
+            },
+            {
+              "title": "Usage - Avanced",
+              "depth": 3,
+              "id": "usage-avanced"
+            }
+          ]
         },
         {
           "title": "API",
           "depth": 2,
           "id": "api",
           "headings": [
+            {
+              "title": "CommandPal instance",
+              "depth": 3,
+              "id": "commandpal-instance"
+            },
+            {
+              "title": "Subscribe to events",
+              "depth": 3,
+              "id": "subscribe-to-events"
+            },
             {
               "title": "Command Item",
               "depth": 3,

@@ -16,22 +16,28 @@
             <ul class="submenu">
               <li class="menu-item -level-1"><a class="link title -active link-index" href="index.html">command-pal</a>
                 <ul class="headings heading-list">
-                  <li class="heading-item -depth-2"><a class="hlink link-what-does-a-_command-palette_-give-you" href="#what-does-a-_command-palette_-give-you">What does a _Command Palette_ give you?</a>
+                  <li class="heading-item -depth-2"><a class="hlink link-benefit's-of-command-palettes" href="#benefit's-of-command-palettes">Benefit's of Command Palettes</a>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-features" href="#features">Features</a>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-why" href="#why">Why?</a>
                   </li>
-                  <li class="heading-item -depth-2"><a class="hlink link-who" href="#who">Who?</a>
-                  </li>
-                  <li class="heading-item -depth-2"><a class="hlink link-installation" href="#installation">Installation</a>
-                  </li>
-                  <li class="heading-item -depth-2"><a class="hlink link-usage-simple" href="#usage-simple">Usage - Simple</a>
-                  </li>
-                  <li class="heading-item -depth-2"><a class="hlink link-usage-avanced" href="#usage-avanced">Usage - Avanced</a>
+                  <li class="heading-item -depth-2"><a class="hlink link-get-started" href="#get-started">Get Started</a>
+                    <ul class="heading-list -depth-2">
+                      <li class="heading-item -depth-3"><a class="hlink link-install" href="#install">Install</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-usage-simple" href="#usage-simple">Usage - Simple</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-usage-avanced" href="#usage-avanced">Usage - Avanced</a>
+                      </li>
+                    </ul>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-api" href="#api">API</a>
                     <ul class="heading-list -depth-2">
+                      <li class="heading-item -depth-3"><a class="hlink link-commandpal-instance" href="#commandpal-instance">CommandPal instance</a>
+                      </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-subscribe-to-events" href="#subscribe-to-events">Subscribe to events</a>
+                      </li>
                       <li class="heading-item -depth-3"><a class="hlink link-command-item" href="#command-item">Command Item</a>
                       </li>
                       <li class="heading-item -depth-3"><a class="hlink link-command-item-child" href="#command-item-child">Command Item Child</a>
@@ -55,8 +61,8 @@
         </div>
         <div class="markdown-body"><h1 align="center" style="font-family: mono" id="command-pal">command-pal</h1>
 <p align="center">&#x2328; The hackable command pallete for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
-<p><img src="https://i.imgur.com/S305K5Y.gif" alt="screen cap"></p>
-<h2 id="what-does-a-command-palette-give-you">What does a <em>Command Palette</em> give you?</h2>
+<p><img src="https://i.imgur.com/jhJjLVL.gif" alt="screen cap"></p>
+<h2 id="benefit&apos;s-of-command-palettes">Benefit&apos;s of Command Palettes</h2>
 <ul>
 <li><strong>Ease of use</strong>
 <ul>
@@ -87,7 +93,9 @@
 <li>Nested commands</li>
 <li>Fuzzy text matching (fuse.js)</li>
 <li>Themeable (theme-light.css and theme-dark.css included)</li>
+<li>Mobile friendly (button in bottom-left)</li>
 </ul>
+<p><img src="https://i.imgur.com/Bb6njpV.gif" alt="screen cap"></p>
 <p><strong>Links</strong></p>
 <ul>
 <li><a href="https://benwinding.github.io/command-pal/demos/cp-advanced">Demo</a></li>
@@ -95,16 +103,15 @@
 <li><a href="https://codepen.io/benaloney/pen/BaobQmd">Code Pen</a></li>
 </ul>
 <h2 id="why">Why?</h2>
-<p>The command palette is an amazing GUI concept which allows</p>
-<h2 id="who">Who?</h2>
-<p>Most people</p>
-<h2 id="installation">Installation</h2>
+<p><em>Command Palettes</em> have alwyas impressed me with how easy they are to use and develop for. I rarely see them on the web platform, so I thought I&apos;d give it a shot.</p>
+<h2 id="get-started">Get Started</h2>
+<h3 id="install">Install</h3>
 <p>Either install from npm</p>
 <p><code>yarn add command-pal</code></p>
 <p>Or use the script tag</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="pl-s">&quot;https://cdn.jsdelivr.net/npm/command-pal&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="usage-simple">Usage - Simple</h2>
+<h3 id="usage-simple">Usage - Simple</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
   <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
   <span class="hljs-attr">commands</span>: [
@@ -126,7 +133,7 @@
 });
 c.start();
 </code></pre>
-<h2 id="usage-avanced">Usage - Avanced</h2>
+<h3 id="usage-avanced">Usage - Avanced</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
   <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
   <span class="hljs-attr">commands</span>: [
@@ -152,6 +159,29 @@ c.start();
 c.start();
 </code></pre>
 <h2 id="api">API</h2>
+<h3 id="commandpal-instance">CommandPal instance</h3>
+<pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
+  <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
+  <span class="hljs-attr">commands</span>: [
+    <span class="pl-c">// Commands go here</span>
+  ]
+});
+<span class="pl-c">// Start the instance</span>
+c.start()
+<span class="pl-c">// Destroy the instance</span>
+c.destroy()
+</code></pre>
+<h3 id="subscribe-to-events">Subscribe to events</h3>
+<p>There&apos;s a few events that can be subscribed to during command-pal&apos;s execution.</p>
+<pre><code class="lang-js"><span class="pl-c">// When a command is executed</span>
+c.subscribe(<span class="pl-s">&quot;exec&quot;</span>, (e) =&gt; { <span class="pl-c1">console</span>.log(<span class="pl-s">&quot;exec&quot;</span>, { e }); });
+<span class="pl-c">// On TextChanged</span>
+c.subscribe(<span class="pl-s">&quot;textChanged&quot;</span>, (e) =&gt; { <span class="pl-c1">console</span>.log(<span class="pl-s">&quot;textChanged&quot;</span>, { e }); });
+<span class="pl-c">// When a command palette is opened</span>
+c.subscribe(<span class="pl-s">&quot;opened&quot;</span>, (e) =&gt; { <span class="pl-c1">console</span>.log(<span class="pl-s">&quot;opened&quot;</span>, { e }); });
+<span class="pl-c">// When a command palette is closed</span>
+c.subscribe(<span class="pl-s">&quot;closed&quot;</span>, (e) =&gt; { <span class="pl-c1">console</span>.log(<span class="pl-s">&quot;closed&quot;</span>, { e }); });
+</code></pre>
 <h3 id="command-item">Command Item</h3>
 <pre><code class="lang-js">{
   <span class="pl-c">// Required name of command (displayed)</span>
@@ -185,6 +215,7 @@ c.start();
 <p>To develop on <code>command-pal</code> simply clone, install and run</p>
 <pre><code>npm run dev
 </code></pre>
+<p>Have a go, PR&apos;s and issues always welcome.</p>
 <h2 id="prior-art">Prior Art</h2>
 <p>Many applications have implemented this before, here&apos;s a few. My favourite implementation is the VScode, which is the main influence for this project.</p>
 <p><strong>Editors</strong></p>
