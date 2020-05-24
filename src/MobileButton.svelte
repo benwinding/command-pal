@@ -12,6 +12,7 @@
     padding: 0px;
     background: none;
     border-radius: 2px;
+    backface-visibility: hidden;
   }
   .mobile-button:focus {
     box-shadow: none;
