@@ -25,22 +25,28 @@
         color: #dbdbdb;
         border-radius: 4px;
         padding: 5px;
+        overflow-x: hidden;
       }
       center {
         margin-top: 200px;
+      }
+      .is-mono {
+        font-family: monospace;
       }
     </style>
   </head>
 
   <body>
     <center>
-      <h1>&lt; command-pal / &gt;</h1>
+      <h1 class="is-mono">command-pal</h1>
       <hr />
-      <h3><kbd>Ctrl</kbd> + <kbd>Space</kbd> to access Command Pal!</h3>
+      <h5><kbd>Ctrl</kbd> + <kbd>Space</kbd></h5>
+      <p>Or</p>
+      <p class="is-flex">Click the <img style="margin-bottom: -5px;" src="https://i.imgur.com/rLU7EJN.png" /> icon on the bottom left </p>
     </center>
     <h2>Output</h2>
     <pre id="output">try it out...</pre>
-    <details open>
+    <details>
       <summary>View Source Code</summary>
       <pre id="cp-code-show"></pre>
     </details>
