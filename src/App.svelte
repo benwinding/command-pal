@@ -57,6 +57,7 @@
       showModal = true;
       loadingChildren = true;
       setItems(command.children);
+      searchField.value = '';
       await asyncTimeout(200)
       searchField.focus()
       loadingChildren = false;
