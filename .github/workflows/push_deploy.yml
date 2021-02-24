@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - master
+
+name: 🚀 Build and Publish
+jobs:
+  build:
+    name: Deploy Library
+    if: "contains(github.event.head_commit.message, 'ci-deploy')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 10.17
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.17
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+      - name: Install Dependencies
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: npm install
+      - name: Build Library
+        run: npm run-script build
+      - name: Build Test
+        run: npm run-script test
+      - name: 🚀 Publish (if on master)
+        uses: mikeal/merge-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

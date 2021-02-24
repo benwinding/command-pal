@@ -11,6 +11,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
+    "test": "echo '(not implemented)'",
     "build-docs": "docpress b && cp -r _docpress dist/docs",
     "build-demo": "rollup -c && cp -r public dist/demos",
     "build-all": "npm run clean && npm run build-demo && npm run build-docs",

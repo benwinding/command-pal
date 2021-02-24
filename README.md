@@ -1,7 +1,23 @@
 <h1 align="center" style="font-family: mono">command-pal</h1>
 <p align="center">⌨ The hackable command palette for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
+<div align="center">
+
+<!-- [START badges] -->
+[![NPM Version](https://img.shields.io/npm/v/command-pal.svg)](https://www.npmjs.com/package/command-pal) 
+[![License](https://img.shields.io/npm/l/command-pal.svg)](https://github.com/benwinding/command-pal/blob/master/LICENSE) 
+[![Downloads/week](https://img.shields.io/npm/dm/command-pal.svg)](https://www.npmjs.com/package/command-pal) 
+[![Github Issues](https://img.shields.io/github/issues/benwinding/command-pal.svg)](https://github.com/benwinding/command-pal)
+<!-- [END badges] -->
+
+</div>
 
 ![screen cap](https://i.imgur.com/jhJjLVL.gif)
+
+## Demos
+
+- [Demo Advanced](https://benwinding.github.io/command-pal/demos/cp-advanced)
+- [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
+- [Code Pen](https://codepen.io/benaloney/pen/BaobQmd)
 
 ## Benefit's of Command Palettes
 
@@ -28,12 +44,6 @@
 - Mobile friendly (button in bottom-left)
 
 ![screen cap](https://i.imgur.com/Bb6njpV.gif)
-
-**Links**
-
-- [Demo](https://benwinding.github.io/command-pal/demos/cp-advanced)
-- [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
-- [Code Pen](https://codepen.io/benaloney/pen/BaobQmd)
 
 ## Why?
 
