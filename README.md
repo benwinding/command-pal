@@ -15,8 +15,10 @@
 
 ## Demos
 
-- [Demo Advanced](https://benwinding.github.io/command-pal/demos/cp-advanced)
 - [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
+- [Demo Advanced](https://benwinding.github.io/command-pal/demos/cp-advanced)
+- [Demo Dynamic](https://benwinding.github.io/command-pal/demos/cp-dynamic)
+
 - [Code Pen](https://codepen.io/benaloney/pen/BaobQmd)
 
 ## Benefit's of Command Palettes
@@ -38,6 +40,7 @@
 - JS framework agnostic (can be attached to any site)
 - Keyboard first control (shortcuts configurable)
 - Custom commands
+- Dynamically Add/Remove commands
 - Nested commands
 - Fuzzy text matching (fuse.js)
 - Themeable (theme-light.css and theme-dark.css included)
@@ -182,6 +185,31 @@ Note: Child commands cannot have shortcuts.
 },
 ```
 
+### Add/Remove Command's At Runtime
+
+The command list is an observed array, which means you can modify it even after it's instantiated. The following snippet shows how commands can be dynamically added during runtime.
+
+``` js
+const commands = [
+  {
+    name: "Add Command to List",
+    handler: () => {
+      commands.push({
+        name: 'New Command',
+        handler: () => {
+          // Do something
+        },
+      });
+    },
+  },
+];
+const c = new CommandPal({
+  hotkey: "ctrl+space",
+  commands: commands,
+});
+c.start();
+```
+
 ## Local Development
 
 To develop on `command-pal` simply clone, install and run
@@ -189,6 +217,9 @@ To develop on `command-pal` simply clone, install and run
 ```
 npm run dev
 ```
+Then the following link:
+
+- http://localhost:5005/cp-advanced/local-dev.html
 
 Have a go, PR's and issues always welcome.
 
