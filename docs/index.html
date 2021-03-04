@@ -16,6 +16,8 @@
             <ul class="submenu">
               <li class="menu-item -level-1"><a class="link title -active link-index" href="index.html">command-pal</a>
                 <ul class="headings heading-list">
+                  <li class="heading-item -depth-2"><a class="hlink link-demos" href="#demos">Demos</a>
+                  </li>
                   <li class="heading-item -depth-2"><a class="hlink link-benefit's-of-command-palettes" href="#benefit's-of-command-palettes">Benefit's of Command Palettes</a>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-features" href="#features">Features</a>
@@ -42,6 +44,8 @@
                       </li>
                       <li class="heading-item -depth-3"><a class="hlink link-command-item-child" href="#command-item-child">Command Item Child</a>
                       </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-addremove-command's-at-runtime" href="#addremove-command's-at-runtime">Add/Remove Command's At Runtime</a>
+                      </li>
                     </ul>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-local-development" href="#local-development">Local Development</a>
@@ -61,7 +65,22 @@
         </div>
         <div class="markdown-body"><h1 align="center" style="font-family: mono" id="command-pal">command-pal</h1>
 <p align="center">&#x2328; The hackable command palette for the web, inspired by <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
+<div align="center">
+<!-- [START badges] -->
+<p><a href="https://www.npmjs.com/package/command-pal"><img src="https://img.shields.io/npm/v/command-pal.svg" alt="NPM Version"></a>
+<a href="https://github.com/benwinding/command-pal/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/command-pal.svg" alt="License"></a>
+<a href="https://www.npmjs.com/package/command-pal"><img src="https://img.shields.io/npm/dm/command-pal.svg" alt="Downloads/week"></a>
+<a href="https://github.com/benwinding/command-pal"><img src="https://img.shields.io/github/issues/benwinding/command-pal.svg" alt="Github Issues"></a></p>
+<!-- [END badges] -->
+</div>
 <p><img src="https://i.imgur.com/jhJjLVL.gif" alt="screen cap"></p>
+<h2 id="demos">Demos</h2>
+<ul>
+<li><a href="https://benwinding.github.io/command-pal/demos/cp-simple">Demo Simple</a></li>
+<li><a href="https://benwinding.github.io/command-pal/demos/cp-advanced">Demo Advanced</a></li>
+<li><a href="https://benwinding.github.io/command-pal/demos/cp-dynamic">Demo Dynamic</a></li>
+<li><a href="https://codepen.io/benaloney/pen/BaobQmd">Code Pen</a></li>
+</ul>
 <h2 id="benefit&apos;s-of-command-palettes">Benefit&apos;s of Command Palettes</h2>
 <ul>
 <li><strong>Ease of use</strong>
@@ -90,18 +109,13 @@
 <li>JS framework agnostic (can be attached to any site)</li>
 <li>Keyboard first control (shortcuts configurable)</li>
 <li>Custom commands</li>
+<li>Dynamically Add/Remove commands</li>
 <li>Nested commands</li>
 <li>Fuzzy text matching (fuse.js)</li>
 <li>Themeable (theme-light.css and theme-dark.css included)</li>
 <li>Mobile friendly (button in bottom-left)</li>
 </ul>
 <p><img src="https://i.imgur.com/Bb6njpV.gif" alt="screen cap"></p>
-<p><strong>Links</strong></p>
-<ul>
-<li><a href="https://benwinding.github.io/command-pal/demos/cp-advanced">Demo</a></li>
-<li><a href="https://benwinding.github.io/command-pal/demos/cp-simple">Demo Simple</a></li>
-<li><a href="https://codepen.io/benaloney/pen/BaobQmd">Code Pen</a></li>
-</ul>
 <h2 id="why">Why?</h2>
 <p><em>Command Palettes</em> have alwyas impressed me with how easy they are to use and develop for. I rarely see them on the web platform, so I thought I&apos;d give it a shot.</p>
 <h2 id="get-started">Get Started</h2>
@@ -211,10 +225,35 @@ c.subscribe(<span class="pl-s">&quot;closed&quot;</span>, (e) =&gt; { <span clas
   }
 },
 </code></pre>
+<h3 id="addremove-command&apos;s-at-runtime">Add/Remove Command&apos;s At Runtime</h3>
+<p>The command list is an observed array, which means you can modify it even after it&apos;s instantiated. The following snippet shows how commands can be dynamically added during runtime.</p>
+<pre><code class="lang-js"><span class="pl-k">const</span> commands = [
+  {
+    <span class="hljs-attr">name</span>: <span class="pl-s">&quot;Add Command to List&quot;</span>,
+    <span class="hljs-attr">handler</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      commands.push({
+        <span class="hljs-attr">name</span>: <span class="pl-s">&apos;New Command&apos;</span>,
+        <span class="hljs-attr">handler</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+          <span class="pl-c">// Do something</span>
+        },
+      });
+    },
+  },
+];
+<span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
+  <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
+  <span class="hljs-attr">commands</span>: commands,
+});
+c.start();
+</code></pre>
 <h2 id="local-development">Local Development</h2>
 <p>To develop on <code>command-pal</code> simply clone, install and run</p>
 <pre><code>npm run dev
 </code></pre>
+<p>Then the following link:</p>
+<ul>
+<li><a href="http://localhost:5005/cp-advanced/local-dev.html">http://localhost:5005/cp-advanced/local-dev.html</a></li>
+</ul>
 <p>Have a go, PR&apos;s and issues always welcome.</p>
 <h2 id="prior-art">Prior Art</h2>
 <p>Many applications have implemented this before, here&apos;s a few. My favourite implementation is the VScode, which is the main influence for this project.</p>

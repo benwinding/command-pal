@@ -8,6 +8,11 @@
         "slug": "index",
         "headings": [
           {
+            "title": "Demos",
+            "depth": 2,
+            "id": "demos"
+          },
+          {
             "title": "Benefit's of Command Palettes",
             "depth": 2,
             "id": "benefit's-of-command-palettes"
@@ -68,6 +73,11 @@
                 "title": "Command Item Child",
                 "depth": 3,
                 "id": "command-item-child"
+              },
+              {
+                "title": "Add/Remove Command's At Runtime",
+                "depth": 3,
+                "id": "addremove-command's-at-runtime"
               }
             ]
           },
@@ -92,6 +102,11 @@
       "pageTitle": "command-pal",
       "slug": "index",
       "headings": [
+        {
+          "title": "Demos",
+          "depth": 2,
+          "id": "demos"
+        },
         {
           "title": "Benefit's of Command Palettes",
           "depth": 2,
@@ -153,6 +168,11 @@
               "title": "Command Item Child",
               "depth": 3,
               "id": "command-item-child"
+            },
+            {
+              "title": "Add/Remove Command's At Runtime",
+              "depth": 3,
+              "id": "addremove-command's-at-runtime"
             }
           ]
         },
