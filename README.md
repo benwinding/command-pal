@@ -18,7 +18,6 @@
 - [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
 - [Demo Advanced](https://benwinding.github.io/command-pal/demos/cp-advanced)
 - [Demo Dynamic](https://benwinding.github.io/command-pal/demos/cp-dynamic)
-
 - [Code Pen](https://codepen.io/benaloney/pen/BaobQmd)
 
 ## Benefit's of Command Palettes
