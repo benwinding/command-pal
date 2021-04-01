@@ -10,7 +10,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public",
+    "start": "serve public",
     "test": "echo '(not implemented)'",
     "build-docs": "docpress b && cp -r _docpress dist/docs",
     "build-demo": "rollup -c && cp -r public dist/demos",
@@ -30,7 +30,7 @@
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
-    "sirv-cli": "^0.4.4",
+    "serve": "^11.3.2",
     "svelte": "^3.0.0"
   },
   "dependencies": {

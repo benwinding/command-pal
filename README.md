@@ -123,7 +123,8 @@ c.start();
 ### CommandPal instance
 ``` js
 const c = new CommandPal({
-  hotkey: "ctrl+space",
+  hotkey: "ctrl+space",  // Launcher shortcut
+  hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
   commands: [
     // Commands go here
   ]

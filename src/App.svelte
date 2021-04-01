@@ -5,12 +5,19 @@
   import SearchField from "./SearchField.svelte";
   import MobileButton from "./MobileButton.svelte";
   import { setContext, onMount, createEventDispatcher } from "svelte";
-  import { asyncTimeout, setMainShortCut, setAllShortCuts } from "./shortcuts";
+  import {
+    asyncTimeout,
+    setMainShortCut,
+    setAllShortCuts,
+    initShortCuts
+  } from "./shortcuts";
   const dispatch = createEventDispatcher();
 
   export let hotkey;
   export let inputData = [];
-  const options = {
+  export let hotkeysGlobal;
+
+  const optionsFuse = {
     isCaseSensitive: false,
     shouldSort: true,
     keys: ["name", "description"]
@@ -23,9 +30,10 @@
   let selectedIndex = "";
   let items = inputData;
   let itemsFiltered = inputData;
-  let fuse = new Fuse(items, options);
+  let fuse = new Fuse(items, optionsFuse);
 
   onMount(() => {
+    initShortCuts(hotkeysGlobal);
     setMainShortCut(hotkey, async () => {
       showModal = true;
       selectedIndex = 0;
@@ -44,7 +52,7 @@
   function setItems(newItems) {
     items = newItems;
     itemsFiltered = items;
-    fuse = new Fuse(items, options);
+    fuse = new Fuse(items, optionsFuse);
   }
 
   async function onHandleCommand(command) {
@@ -57,9 +65,9 @@
       showModal = true;
       loadingChildren = true;
       setItems(command.children);
-      searchField.value = '';
-      await asyncTimeout(200)
-      searchField.focus()
+      searchField.value = "";
+      await asyncTimeout(200);
+      searchField.focus();
       loadingChildren = false;
     } else {
       dispatch("exec", command);
@@ -110,7 +118,7 @@
   }
 
   async function onClosed(e) {
-    await asyncTimeout(10)
+    await asyncTimeout(10);
     if (loadingChildren) {
       return;
     }
