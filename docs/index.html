@@ -175,7 +175,8 @@ c.start();
 <h2 id="api">API</h2>
 <h3 id="commandpal-instance">CommandPal instance</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
-  <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
+  <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,  <span class="pl-c">// Launcher shortcut</span>
+  <span class="hljs-attr">hotkeysGlobal</span>: <span class="pl-c1">true</span>,       <span class="pl-c">// Makes shortcut keys work in any &lt;textarea&gt;, &lt;input&gt; or &lt;select&gt;</span>
   <span class="hljs-attr">commands</span>: [
     <span class="pl-c">// Commands go here</span>
   ]
