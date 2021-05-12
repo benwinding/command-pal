@@ -21,7 +21,7 @@ class CommandPal {
     function subTo(eventName) {
       ctx.app.$on(eventName, (e) => ctx.ps.publish(eventName, e.detail));
     }
-    subTo("open");
+    subTo("opened");
     subTo("closed");
     subTo("textChanged");
     subTo("exec");
