@@ -13,6 +13,10 @@
 
 ![screen cap](https://i.imgur.com/jhJjLVL.gif)
 
+<div align="center">
+  <i>Configure custom commands with custom keyboard shortcuts!</i>
+</div>
+
 ## Demos
 
 - [Demo Simple](https://benwinding.github.io/command-pal/demos/cp-simple)
