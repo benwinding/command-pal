@@ -74,6 +74,9 @@
 <!-- [END badges] -->
 </div>
 <p><img src="https://i.imgur.com/jhJjLVL.gif" alt="screen cap"></p>
+<div align="center">
+  <i>Configure custom commands with custom keyboard shortcuts!</i>
+</div>
 <h2 id="demos">Demos</h2>
 <ul>
 <li><a href="https://benwinding.github.io/command-pal/demos/cp-simple">Demo Simple</a></li>
@@ -150,6 +153,7 @@ c.start();
 <h3 id="usage-avanced">Usage - Avanced</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
   <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
+  <span class="hljs-attr">placeholder</span>: <span class="pl-s">&quot;Custom placeholder text...&quot;</span>,
   <span class="hljs-attr">commands</span>: [
     {
       <span class="hljs-attr">name</span>: <span class="pl-s">&quot;Change Language&quot;</span>,
@@ -177,6 +181,7 @@ c.start();
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
   <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,  <span class="pl-c">// Launcher shortcut</span>
   <span class="hljs-attr">hotkeysGlobal</span>: <span class="pl-c1">true</span>,       <span class="pl-c">// Makes shortcut keys work in any &lt;textarea&gt;, &lt;input&gt; or &lt;select&gt;</span>
+  <span class="hljs-attr">placeholder</span>: <span class="pl-s">&quot;Custom placeholder text...&quot;</span>, <span class="pl-c">//  Changes placeholder text of input</span>
   <span class="hljs-attr">commands</span>: [
     <span class="pl-c">// Commands go here</span>
   ]
