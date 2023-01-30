@@ -27,6 +27,11 @@
     background: none;
     transform: translateY(2px);
   }
+  .mobile-button > svg {
+    width: 44px;
+    height: 44px;
+    display: block;
+  }
 </style>
 
 <button class="mobile-button" on:click={e => dispatch('click')}>
@@ -35,9 +40,7 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:cc="http://creativecommons.org/ns#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    viewport="0 0 24 24"
-    height="24"
-    width="24"
+    viewBox="0 0 24 24"
     version="1.1">
     <g transform="translate(0 -1028.4)">
       <path
