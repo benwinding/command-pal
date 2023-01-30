@@ -68,6 +68,7 @@
   class="search"
   bind:this={inputEl}
   bind:value={inputValue}
+  id={inputName}
   name={inputName}
   on:blur={onBlur}
   on:keydown={onKeyDown}
