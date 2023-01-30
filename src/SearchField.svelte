@@ -5,6 +5,7 @@
 
   export let show;
   export let inputEl;
+  export let placeholderText;
 
   let inputValue;
 
@@ -75,4 +76,4 @@
   on:input={onTextChanged}
   autocomplete="no"
   type="text"
-  placeholder="What are you looking for?" />
+  placeholder={placeholderText} />

@@ -99,6 +99,7 @@ c.start();
 ``` js
 const c = new CommandPal({
   hotkey: "ctrl+space",
+  placeholder: "Custom placeholder text...",
   commands: [
     {
       name: "Change Language",
@@ -129,6 +130,7 @@ c.start();
 const c = new CommandPal({
   hotkey: "ctrl+space",  // Launcher shortcut
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
+  placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   commands: [
     // Commands go here
   ]
