@@ -16,6 +16,7 @@
   export let hotkey;
   export let inputData = [];
   export let hotkeysGlobal;
+  export let placeholderText;
 
   const optionsFuse = {
     isCaseSensitive: false,
@@ -140,6 +141,7 @@
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
       <SearchField
+        placeholderText={placeholderText}
         show={showModal}
         bind:inputEl={searchField}
         on:closed={onClosed}
