@@ -14,6 +14,7 @@ class CommandPal {
       props: {
         hotkey: this.options.hotkey || 'ctrl+space',
         inputData: this.options.commands || [],
+        placeholderText: this.options.placeholder || "What are you looking for?",
         hotkeysGlobal: this.options.hotkeysGlobal || false
       },
     });
