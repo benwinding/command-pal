@@ -72,7 +72,9 @@
   }
   .items-list {
     overflow-y: auto;
-    max-height: 360px;
+    max-height: min(360px, 50vh);
+    max-height: min(360px, 80dvh);
+    overscroll-behavior: contain;
   }
   .no-matches {
     margin: 5px 0px;
