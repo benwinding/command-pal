@@ -17,6 +17,7 @@
   export let inputData = [];
   export let hotkeysGlobal;
   export let placeholderText;
+  export let debugOutput;
 
   const optionsFuse = {
     isCaseSensitive: false,

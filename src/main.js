@@ -3,7 +3,7 @@ import pubsub from "micro-pubsub";
 
 class CommandPal {
   constructor(options) {
-    console.log("CommandPal", { options });
+    if (options.debugOutput) { console.log("CommandPal", { options });}
     this.options = options || {};
     this.ps = pubsub.create();
   }
@@ -15,7 +15,8 @@ class CommandPal {
         hotkey: this.options.hotkey || 'ctrl+space',
         inputData: this.options.commands || [],
         placeholderText: this.options.placeholder || "What are you looking for?",
-        hotkeysGlobal: this.options.hotkeysGlobal || false
+        hotkeysGlobal: this.options.hotkeysGlobal || false,
+        debugOutput: this.options.debugOutput || false,
       },
     });
     const ctx = this;
