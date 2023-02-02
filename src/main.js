@@ -6,6 +6,22 @@ class CommandPal {
     console.log("CommandPal", { options });
     this.options = options || {};
     this.ps = pubsub.create();
+
+    // if function already defined follow the Beatles and Let It Be
+    if (typeof(window.cp_hashFromString) === 'undefined') {
+      if ( ! this.options.reportStyleHash ) {
+	window.cp_hashFromString = async function (name, string) {return null}
+      } else {
+	window.cp_hashFromString = async function (name, string) {
+	  const hash = await crypto.subtle.digest(
+	    "SHA-256",
+	    (new TextEncoder()).encode(string))
+	  let csp = "sha256-" + btoa(String.fromCharCode(
+	    ...new Uint8Array(hash)));
+	  return `${name} '${csp}'`;
+	}
+      }
+    }
   }
 
   start() {
@@ -15,7 +31,8 @@ class CommandPal {
         hotkey: this.options.hotkey || 'ctrl+space',
         inputData: this.options.commands || [],
         placeholderText: this.options.placeholder || "What are you looking for?",
-        hotkeysGlobal: this.options.hotkeysGlobal || false
+        hotkeysGlobal: this.options.hotkeysGlobal || false,
+        reportStyleHash: this.options.reportStyleHash || false
       },
     });
     const ctx = this;
