@@ -15,7 +15,8 @@ class CommandPal {
         hotkey: this.options.hotkey || 'ctrl+space',
         inputData: this.options.commands || [],
         placeholderText: this.options.placeholder || "What are you looking for?",
-        hotkeysGlobal: this.options.hotkeysGlobal || false
+        hotkeysGlobal: this.options.hotkeysGlobal || false,
+        noButton: this.options.noButton || false,
       },
     });
     const ctx = this;

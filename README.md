@@ -131,6 +131,8 @@ const c = new CommandPal({
   hotkey: "ctrl+space",  // Launcher shortcut
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
+  noButton: false, // if true, do not generate mobile button
+
   commands: [
     // Commands go here
   ]
