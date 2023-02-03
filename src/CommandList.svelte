@@ -56,6 +56,7 @@
 <style>
   .item {
     display: flex;
+    gap: 0.5em;
     align-items: center;
     justify-content: space-between;
     margin: 0px;
@@ -64,6 +65,24 @@
   }
   .item:hover {
     cursor: pointer;
+  }
+  .item span {
+    flex-grow: 1;
+  }
+  .item :global(img) {
+    height:24px;
+    width:24px;
+  }
+  .item :global(span.icon) {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 24px;
+  }
+  .item :global(svg) {
+    fill: currentcolor;
+    height: 24px;
+    width: 24px;
   }
   kyb {
     padding: 1px 4px;
@@ -89,6 +108,13 @@
       class="item"
       class:selected={index == selectedIndex}
       on:mousedown={e => clickedIndex(e, index)}>
+      {#if item.icon}
+        {@html item.icon}
+      {:else}
+	{#if item.icon !== null}
+            <svg fill="#000000" height="24" width="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+        {/if}
+      {/if}
       <span>{item.name}</span>
       {#if !!item.shortcut}
         <kyb>{item.shortcut}</kyb>
