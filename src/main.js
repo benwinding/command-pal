@@ -13,6 +13,9 @@ class CommandPal {
 	window.cp_hashFromString = async function (name, string) {return null}
       } else {
 	window.cp_hashFromString = async function (name, string) {
+	  if (typeof(crypto.subtle) !== 'object' ) {
+	    return "Crypto.subtle not available are you using localhost or https?"
+	  }
 	  const hash = await crypto.subtle.digest(
 	    "SHA-256",
 	    (new TextEncoder()).encode(string))
