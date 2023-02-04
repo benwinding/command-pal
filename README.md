@@ -130,6 +130,7 @@ c.start();
 const c = new CommandPal({
   hotkey: "ctrl+space",  // Launcher shortcut
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
+  paletteId: "CommandPalette", // adds unique ID to aid in targeting with CSS
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   commands: [
     // Commands go here
@@ -215,6 +216,54 @@ const c = new CommandPal({
 });
 c.start();
 ```
+
+### Styling CommandPal instances
+
+The styles used by command-pal are included in the package, but you
+can override these. To make this easier, command-pal adds HTML id's to
+a few components.
+
+   * The whole palette is identified by `CommandPalette`.
+   * The mobile button inside `#CommandPalette` is identified by
+     `CommandPalette-button`.
+   * Lastly the mask/backdrop for the palette inside `#CommandPalette`
+     is identified by `CommandPalette-mask`.
+     
+The `CommandPalette` part of the id's can be set using the `paletteId`
+option to `CommandPal()`.
+
+Using this you can assign different backgrounds to different instances
+of command-pal. For example:
+```css
+  #mypal-button { top: 30px; bottom: auto;} 
+  #mypal-mask { background-color: rgb(255,255,0,0.75); }
+  #mypal [slot=items] { background-color: red}
+```
+along with:
+```
+   c = CommandPal(..., paletteId: 'mypal',)
+```
+
+will result in:
+
+   * the mobile button for the palette will be moved 30 pixels from
+     the top rather than 10px from the bottom.
+   * the backdrop will be yellow at 75% opacity rather than
+     black at 50% opacity.
+   * the background for the unselected/unhovered items on the command
+     list will be red.
+
+The `-button` and `-mask` ids are a shortcut. This is also valid:
+```css
+  /* mypal-button */
+  #mypal > button  { top: 30px; bottom: auto;}
+  /* mypal-mask */
+  #mypal > div.modal-mask { background-color: rgb(0,128,200,0.75); }
+  #mypal [slot=items] { background-color: yellow;}
+  #mypal .item {color:black;} /* color of text against yellow background */
+```
+but is more difficult to use and depends on the structure of the HTML
+more than using ids.
 
 ## Local Development
 
