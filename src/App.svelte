@@ -11,6 +11,9 @@
     setAllShortCuts,
     initShortCuts
   } from "./shortcuts";
+  import {
+    setDisplayPalette,
+  } from "./main";
   const dispatch = createEventDispatcher();
 
   export let hotkey;
@@ -48,6 +51,16 @@
       await asyncTimeout(100);
       onHandleCommand(command);
     });
+    setDisplayPalette(async active_state => {
+       if (active_state === undefined) {
+       	  showModal = !showModal;
+       } else if ([true, false].includes(active_state)) {
+	 showModal = active_state;
+       } else {
+	 throw("Non-boolean: " + active_state +
+	       " - passed to displayPalette")
+       }
+    })
   });
 
   function setItems(newItems) {
