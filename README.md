@@ -139,6 +139,12 @@ const c = new CommandPal({
 c.start()
 // Destroy the instance
 c.destroy()
+// Display the instance
+c.displayPalette(true)
+// Hide the instance
+c.displayPalette(false)
+// Toggle from display -> hide or hide -> display
+c.displayPalette()
 ```
 
 ### Subscribe to events
