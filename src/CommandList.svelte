@@ -108,11 +108,11 @@
       class="item"
       class:selected={index == selectedIndex}
       on:mousedown={e => clickedIndex(e, index)}>
-      {#if item.icon}
+      {#if !!item.icon}
         {@html item.icon}
       {:else}
 	{#if item.icon !== null}
-            <svg fill="#000000" height="24" width="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+            <svg fill="#000000" class="cp-placeholder" height="24" width="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
         {/if}
       {/if}
       <span>{item.name}</span>
