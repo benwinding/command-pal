@@ -12,8 +12,8 @@
     initShortCuts
   } from "./shortcuts";
   import {
-    setDisplayPalette,
-  } from "./main";
+    storeDisplayPaletteMethod,
+  } from "./displayMethod";
   const dispatch = createEventDispatcher();
 
   export let hotkey;
