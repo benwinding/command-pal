@@ -44,6 +44,15 @@
       <p>Or</p>
       <p class="is-flex">Click the <img style="margin-bottom: -5px;" src="https://i.imgur.com/rLU7EJN.png" /> icon on the bottom left </p>
     </center>
+    <input autofocus type="text">
+    <input type="checkbox">
+    <textarea>here is some text</textarea>
+    <select>
+      <option>foo</option>
+      <option>foo</option>
+      <option>foo</option>
+    </select>
+
     <h2>Output</h2>
     <pre id="output">try it out...</pre>
     <details>
@@ -62,6 +71,7 @@
     <script>
       const c = new CommandPal({
         hotkey: "ctrl+space",
+        hotkeysGlobal: true,  
         placeholder: "Custom placeholder text...",
         commands: [
           {
