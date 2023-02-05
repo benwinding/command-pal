@@ -24,6 +24,7 @@
     const keyCode = e.code.toLowerCase();
     if (keyCode === "enter") {
       dispatch("enter", inputValue);
+      onBlur();
     } else if (keyCode === "arrowdown") {
       dispatch("arrowdown");
     } else if (keyCode === "arrowup") {
