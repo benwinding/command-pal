@@ -209,10 +209,7 @@ Also keep your aliases short when possible. Don't include terms in the
 alias that are already in the command. This helps prevent skewing of
 the scores (due to the same term being matched multiple times). It also
 keeps the command text size down making it more readable.
-
-Also this works for aliases made up of characters from the basic Latin
-alphabet. If they would be covered by the regular expression:
-`\w[\s\w-]*` it should work.
+Aliases in non-Latin languages should work.
 
 ### Command Item Child
 
