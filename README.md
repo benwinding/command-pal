@@ -131,6 +131,7 @@ const c = new CommandPal({
   hotkey: "ctrl+space",  // Launcher shortcut
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
+  displayHints: false,  // if true, aliases are displayed as command hints
   commands: [
     // Commands go here
   ]
@@ -163,6 +164,8 @@ c.subscribe("closed", (e) => { console.log("closed", { e }); });
   name: "Open Messages",
   // Required name of command (displayed)
   description: "View all messages in inbox",
+  // Other names for the command that can be hints for the user
+  aliases: [ "View", "See" ],
   // Shortcut of command
   shortcut: "ctrl+3",
   // Callback function of the command to execute
@@ -173,6 +176,43 @@ c.subscribe("closed", (e) => { console.log("closed", { e }); });
   children: [...]
 },
 ```
+
+#### Aliases and Hints
+
+The aliases property is included by the fuzzy search. So searching for
+terms in the aliases array always works. Matches in the aliases array
+are weighted twice that of the name or description fields. However
+setting the `displayHints` option for `CommandPal` to `true` displays
+the best matching alias next to the command.
+
+For example suppose the `Open Messages` command has aliases of `See`
+and `View`. Typing `se` will display `Open Messages (See)` indicating
+that you should use the `Open Messages` command to see your messages.
+It helps explain what's being matched and why `Open Messages` is
+displayed when `see` is typed.  Similarly typing `vi` will produce
+`Open Messages (View)` in the command list. If you were to type `v`
+you would start with `Open Messages (View)` then typing `e` would
+result in `Open Messages (See)`. By default `displayHints` is
+disabled.
+
+The fuse.js fuzzy matcher returns match info. This indicates where it
+found matches to the search input.  This information is used to select
+the top hint to display to the user. For each match in the aliases
+array, the score is the count of the number of matching characters
+with a little extra weight given to matches at the beginning of the
+alias. If two terms have the same weight, the term more to the left in
+the array is chosen. To get the best use from this, order your terms
+putting the most used terms first in the array. This scoring method is
+a work in progress and may change in the future.
+
+Also keep your aliases short when possible. Don't include terms in the
+alias that are already in the command. This helps prevent skewing of
+the scores (due to the same term being matched multiple times). It also
+keeps the command text size down making it more readable.
+
+Also this works for aliases made up of characters from the basic Latin
+alphabet. If they would be covered by the regular expression:
+`\w[\s\w-]*` it should work.
 
 ### Command Item Child
 
