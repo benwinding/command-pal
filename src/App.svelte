@@ -17,7 +17,7 @@
   export let inputData = [];
   export let hotkeysGlobal;
   export let placeholderText;
-  export let noButton;
+  export let hideButton;
   export let paletteId;
 
   const optionsFuse = {
@@ -139,7 +139,7 @@
 </script>
 
 <div id={paletteId}>
-  {#if !noButton}
+  {#if !hideButton}
     <MobileButton on:click={onMobileClick} />
   {/if}
   <PaletteContainer bind:show={showModal}>
