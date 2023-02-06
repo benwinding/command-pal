@@ -30,7 +30,7 @@
                       </li>
                       <li class="heading-item -depth-3"><a class="hlink link-usage-simple" href="#usage-simple">Usage - Simple</a>
                       </li>
-                      <li class="heading-item -depth-3"><a class="hlink link-usage-avanced" href="#usage-avanced">Usage - Avanced</a>
+                      <li class="heading-item -depth-3"><a class="hlink link-usage-advanced" href="#usage-advanced">Usage - Advanced</a>
                       </li>
                     </ul>
                   </li>
@@ -152,7 +152,7 @@
 });
 c.start();
 </code></pre>
-<h3 id="usage-avanced">Usage - Avanced</h3>
+<h3 id="usage-advanced">Usage - Advanced</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
   <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,
   <span class="hljs-attr">placeholder</span>: <span class="pl-s">&quot;Custom placeholder text...&quot;</span>,
@@ -185,6 +185,8 @@ c.start();
   <span class="hljs-attr">hotkeysGlobal</span>: <span class="pl-c1">true</span>,       <span class="pl-c">// Makes shortcut keys work in any &lt;textarea&gt;, &lt;input&gt; or &lt;select&gt;</span>
   <span class="hljs-attr">id</span>: <span class="pl-s">&quot;CommandPal&quot;</span>, <span class="pl-c">// adds unique ID to aid in targeting with CSS</span>
   <span class="hljs-attr">placeholder</span>: <span class="pl-s">&quot;Custom placeholder text...&quot;</span>, <span class="pl-c">//  Changes placeholder text of input</span>
+  <span class="hljs-attr">hideButton</span>: <span class="pl-c1">false</span>, <span class="pl-c">// if true, do not generate mobile button</span>
+
   <span class="hljs-attr">commands</span>: [
     <span class="pl-c">// Commands go here</span>
   ]

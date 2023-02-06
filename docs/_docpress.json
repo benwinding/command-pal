@@ -43,9 +43,9 @@
                 "id": "usage-simple"
               },
               {
-                "title": "Usage - Avanced",
+                "title": "Usage - Advanced",
                 "depth": 3,
-                "id": "usage-avanced"
+                "id": "usage-advanced"
               }
             ]
           },
@@ -143,9 +143,9 @@
               "id": "usage-simple"
             },
             {
-              "title": "Usage - Avanced",
+              "title": "Usage - Advanced",
               "depth": 3,
-              "id": "usage-avanced"
+              "id": "usage-advanced"
             }
           ]
         },
