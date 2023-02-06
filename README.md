@@ -185,7 +185,7 @@ Note: Child commands cannot have shortcuts.
 {
   // Required name of command (displayed)
   name: "Open Messages",
-  // Required name of command (displayed)
+  // Description of command, used in matching command (not displayed)
   description: "View all messages in inbox",
   // Callback function of the command to execute
   handler: (e) => {
