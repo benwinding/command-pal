@@ -20,6 +20,11 @@
     inputValue = "";
   }
 
+  function onFieldBlur() {
+    if (window.commandPalIgnoreBlur) return;
+    onBlur();
+  }
+
   function onKeyDown(e) {
     const keyCode = e.code.toLowerCase();
     if (keyCode === "enter") {
@@ -72,7 +77,7 @@
   bind:value={inputValue}
   id={inputName}
   name={inputName}
-  on:blur={onBlur}
+  on:blur={onFieldBlur}
   on:keydown={onKeyDown}
   on:input={onTextChanged}
   autocomplete="no"
