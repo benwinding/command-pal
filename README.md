@@ -258,15 +258,19 @@ Then the following link:
 
 - http://localhost:5005/cp-advanced/local-dev.html
 
+### Prevent Blur
+
 When the search input loses focus (receives a blur event), the palette
 closes. This makes inspecting the palette using the browser's DevTools
 difficult, as switching to DevTools causes the focus to be lost. It is
-possible to stop the palette from closing when focus is lost. If you
-set `window.commandPalIgnoreBlur = true;` using the console, or in
-your JavaScript, it will stop the palette from closing.  To close the
-command palette, click/focus on the search input and type the `ESC`
-key. Running `delete(window.commandPalIgnoreBlur);` in the DevTools
-console will restore the normal close palette action.
+possible to stop the palette from closing when focus is lost.
+
+``` js
+// Disable palette from closing during testing
+window.commandPalIgnoreBlur = true;
+// Re-enable
+window.commandPalIgnoreBlur = false;
+```
 
 Have a go, PR's and issues always welcome.
 
