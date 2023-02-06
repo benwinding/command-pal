@@ -94,7 +94,7 @@ const c = new CommandPal({
 c.start();
 ```
 
-### Usage - Avanced
+### Usage - Advanced
 
 ``` js
 const c = new CommandPal({
@@ -130,6 +130,7 @@ c.start();
 const c = new CommandPal({
   hotkey: "ctrl+space",  // Launcher shortcut
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
+  id: "CommandPal", // adds unique ID to aid in targeting with CSS
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   noButton: false, // if true, do not generate mobile button
 
@@ -216,6 +217,34 @@ const c = new CommandPal({
   commands: commands,
 });
 c.start();
+```
+
+### Styling CommandPal instances
+
+The styles used by command-pal are included in the package. However you can override the default CSS using the following.
+
+```css
+  /* mobile button */
+  #CommandPal .mobile-button  { top: 30px; }
+  /* modal background */
+  #CommandPal .modal-mask { background-color: rgb(0,128,200,0.75); }
+  /* item background */
+  #CommandPal [slot=items] { background-color: yellow;}
+  /* item text */
+  #CommandPal .item { color:black; }
+```
+
+You can also assign a custom `id` to the CommandPal instance.
+
+```js
+   c = CommandPal(..., id: 'mypal',)
+```
+
+Which allows you to style a specific instance.
+
+```css
+  /* mobile button for CommandPal with id='mypal' */
+  #mypal .mobile-button  { top: 30px; bottom: auto;}
 ```
 
 ## Local Development

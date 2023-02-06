@@ -18,6 +18,7 @@
   export let hotkeysGlobal;
   export let placeholderText;
   export let noButton;
+  export let paletteId;
 
   const optionsFuse = {
     isCaseSensitive: false,
@@ -137,8 +138,8 @@
   }
 </script>
 
-<div>
-  { #if noButton == false }
+<div id={paletteId}>
+  {#if !noButton}
     <MobileButton on:click={onMobileClick} />
   {/if}
   <PaletteContainer bind:show={showModal}>

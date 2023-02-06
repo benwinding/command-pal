@@ -6,11 +6,11 @@ export function initShortCuts(bindToInputsToo) {
   if (bindToInputsToo) {
     /* 
     Allows binding to input, select and textarea
-    https://stackoverflow.com/questions/59855852/input-blocks-hotkeys 
+    https://stackoverflow.com/questions/59855852/input-blocks-hotkeys
+    Appears to not work. Setting scope to "all" does work. // rouilj
     */
     hotkeys.filter = function(event){
-      var tagName = (event.target || event.srcElement).tagName;
-      hotkeys.setScope(/^(INPUT|TEXTAREA|SELECT)$/.test(tagName) ? 'input' : 'other');
+      hotkeys.setScope('all');
       return true;
     }
   }

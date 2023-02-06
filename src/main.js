@@ -13,7 +13,9 @@ class CommandPal {
       target: document.body,
       props: {
         hotkey: this.options.hotkey || 'ctrl+space',
+        hotkeysGlobal: this.options.hotkeysGlobal || false,
         inputData: this.options.commands || [],
+        paletteId: this.options.id || "CommandPal",
         placeholderText: this.options.placeholder || "What are you looking for?",
         hotkeysGlobal: this.options.hotkeysGlobal || false,
         noButton: this.options.noButton || false,
