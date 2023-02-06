@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: 🚀 Deploy Demo
+name: 🚀 Deploy Demo (github pages)
 jobs:
   build:
     name: Deploy Library
