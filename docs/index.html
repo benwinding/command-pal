@@ -51,6 +51,10 @@
                     </ul>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-local-development" href="#local-development">Local Development</a>
+                    <ul class="heading-list -depth-2">
+                      <li class="heading-item -depth-3"><a class="hlink link-prevent-blur" href="#prevent-blur">Prevent Blur</a>
+                      </li>
+                    </ul>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-prior-art" href="#prior-art">Prior Art</a>
                   </li>
@@ -185,8 +189,8 @@ c.start();
   <span class="hljs-attr">hotkeysGlobal</span>: <span class="pl-c1">true</span>,       <span class="pl-c">// Makes shortcut keys work in any &lt;textarea&gt;, &lt;input&gt; or &lt;select&gt;</span>
   <span class="hljs-attr">id</span>: <span class="pl-s">&quot;CommandPal&quot;</span>, <span class="pl-c">// adds unique ID to aid in targeting with CSS</span>
   <span class="hljs-attr">placeholder</span>: <span class="pl-s">&quot;Custom placeholder text...&quot;</span>, <span class="pl-c">//  Changes placeholder text of input</span>
+  <span class="hljs-attr">debugOuput</span>: <span class="pl-c1">false</span>, <span class="pl-c">// if true report debugging info to console</span>
   <span class="hljs-attr">hideButton</span>: <span class="pl-c1">false</span>, <span class="pl-c">// if true, do not generate mobile button</span>
-
   <span class="hljs-attr">commands</span>: [
     <span class="pl-c">// Commands go here</span>
   ]
@@ -283,6 +287,16 @@ c.start();
 <ul>
 <li><a href="http://localhost:5005/cp-advanced/local-dev.html">http://localhost:5005/cp-advanced/local-dev.html</a></li>
 </ul>
+<h3 id="prevent-blur">Prevent Blur</h3>
+<p>When the search input loses focus (receives a blur event), the palette
+closes. This makes inspecting the palette using the browser&apos;s DevTools
+difficult, as switching to DevTools causes the focus to be lost. It is
+possible to stop the palette from closing when focus is lost.</p>
+<pre><code class="lang-js"><span class="pl-c">// Disable palette from closing during testing</span>
+<span class="pl-c1">window</span>.commandPalIgnoreBlur = <span class="pl-c1">true</span>;
+<span class="pl-c">// Re-enable</span>
+<span class="pl-c1">window</span>.commandPalIgnoreBlur = <span class="pl-c1">false</span>;
+</code></pre>
 <p>Have a go, PR&apos;s and issues always welcome.</p>
 <h2 id="prior-art">Prior Art</h2>
 <p>Many applications have implemented this before, here&apos;s a few. My favourite implementation is the VScode, which is the main influence for this project.</p>

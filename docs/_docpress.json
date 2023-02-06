@@ -89,7 +89,14 @@
           {
             "title": "Local Development",
             "depth": 2,
-            "id": "local-development"
+            "id": "local-development",
+            "headings": [
+              {
+                "title": "Prevent Blur",
+                "depth": 3,
+                "id": "prevent-blur"
+              }
+            ]
           },
           {
             "title": "Prior Art",
@@ -189,7 +196,14 @@
         {
           "title": "Local Development",
           "depth": 2,
-          "id": "local-development"
+          "id": "local-development",
+          "headings": [
+            {
+              "title": "Prevent Blur",
+              "depth": 3,
+              "id": "prevent-blur"
+            }
+          ]
         },
         {
           "title": "Prior Art",
