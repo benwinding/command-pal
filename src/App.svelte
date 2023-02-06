@@ -138,8 +138,11 @@
     // first char of term matched. So it counts for 1.5 point. [6,7]
     // indicating 2 chars match counts for 2 points.
     let match_index = (a) => ( a.indices.map(
-      range => range[0] == 0 ? range[1] - range[0] + 1.5:
-      	    range[1] - range[0] + 1).reduce((sum, val) => sum+val))
+      range => range[0] == 0 ?
+	((range[1] - range[0])
+	 * 2.5) + 1.5 :
+	((range[1] - range[0]) * 2.5) + 1
+     ).reduce((sum, val) => sum+val))
     
     const e = i.matches.filter(i => i.key === "aliases").sort((a,b) => {
       let a_mi = match_index(a)
