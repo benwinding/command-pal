@@ -94,7 +94,7 @@ const c = new CommandPal({
 c.start();
 ```
 
-### Usage - Avanced
+### Usage - Advanced
 
 ``` js
 const c = new CommandPal({
