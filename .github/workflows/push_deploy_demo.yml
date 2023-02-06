@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: 🚀 Build and Publish
+name: 🚀 Deploy Demo
 jobs:
   build:
     name: Deploy Library
