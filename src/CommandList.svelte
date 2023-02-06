@@ -70,9 +70,6 @@
   .item span {
     flex-grow: 1;
   }
-  .item :first-child {
-    flex-shrink: 0;
-  }	     
   .item :global(img) {
     flex-shrink: 0;
     height:24px;
