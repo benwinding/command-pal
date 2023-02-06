@@ -17,7 +17,8 @@
   export let inputData = [];
   export let hotkeysGlobal;
   export let placeholderText;
-  export let debugOutput;
+  export let hideButton;
+  export let paletteId;
 
   const optionsFuse = {
     isCaseSensitive: false,
@@ -137,8 +138,10 @@
   }
 </script>
 
-<div>
-  <MobileButton on:click={onMobileClick} />
+<div id={paletteId}>
+  {#if !hideButton}
+    <MobileButton on:click={onMobileClick} />
+  {/if}
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
       <SearchField

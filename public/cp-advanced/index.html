@@ -44,7 +44,27 @@
       <p>Or</p>
       <p class="is-flex">Click the <img style="margin-bottom: -5px;" src="https://i.imgur.com/rLU7EJN.png" /> icon on the bottom left </p>
     </center>
-    <h2>Output</h2>
+
+    <hr />
+
+    <h2>Example Inputs</h2>
+
+    <p><i>Try accessing using the <kbd>Ctrl</kbd> + <kbd>Space</kbd> from within them!</i></p>
+    <input autofocus type="text" placeholder="Test Input">
+    <div>
+      <input type="checkbox" id="john" name="drone" value="john" checked="">
+      <label for="john">Test Checkbox</label>
+    </div>
+    <textarea>Test input</textarea>
+    <select>
+      <option>Test Select Box</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </select>
+
+    <hr />
+
+    <h2>Output Events</h2>
     <pre id="output">try it out...</pre>
     <details>
       <summary>View Source Code</summary>
@@ -53,15 +73,16 @@
 
     <!-- head -->
     <div id="cp-head">
-    <script src="https://cdn.jsdelivr.net/npm/command-pal@0.2.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/command-pal@0.2.8"></script>
     <link id="app-theme-css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css"/>
-    <link id="cp-theme-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/command-pal@0.2.7/public/theme-dark.css">
+    <link id="cp-theme-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/command-pal@0.2.8/public/theme-dark.css">
   </div>
     <!-- body -->
   <div id="cp-body">
     <script>
       const c = new CommandPal({
         hotkey: "ctrl+space",
+        hotkeysGlobal: true,  
         placeholder: "Custom placeholder text...",
         commands: [
           {
@@ -72,11 +93,11 @@
               const styleapp = document.getElementById("app-theme-css");
               const isDark = stylecp.href.includes("dark");
               if (isDark) {
-                stylecp.href = "https://cdn.jsdelivr.net/npm/command-pal@0.2.7/public/theme-light.css";
+                stylecp.href = "https://cdn.jsdelivr.net/npm/command-pal@0.2.8/public/theme-light.css";
                 styleapp.href =
                   "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css";
               } else {
-                stylecp.href = "https://cdn.jsdelivr.net/npm/command-pal@0.2.7/public/theme-dark.css";
+                stylecp.href = "https://cdn.jsdelivr.net/npm/command-pal@0.2.8/public/theme-dark.css";
                 styleapp.href =
                   "https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css";
               }
