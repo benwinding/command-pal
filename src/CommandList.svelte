@@ -61,7 +61,8 @@
     justify-content: space-between;
     margin: 0px;
     padding: 0px 7px;
-    height: 36px;
+    min-height: 36px;
+    overflow-y: hidden;
   }
   .item:hover {
     cursor: pointer;
@@ -69,18 +70,24 @@
   .item span {
     flex-grow: 1;
   }
+  .item :first-child {
+    flex-shrink: 0;
+  }	     
   .item :global(img) {
+    flex-shrink: 0;
     height:24px;
     width:24px;
   }
   .item :global(span.icon) {
     display: inline-block;
+    flex-shrink: 0;	
     overflow: hidden;
     white-space: nowrap;
     width: 24px;
   }
   .item :global(svg) {
     fill: currentcolor;
+    flex-shrink: 0;
     height: 24px;
     width: 24px;
   }
