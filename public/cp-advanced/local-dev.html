@@ -33,6 +33,11 @@
       .is-mono {
         font-family: monospace;
       }
+
+      /* Example custom styling */
+      #MyCommandPal .mobile-button {
+        border: 2px solid rgba(215, 79, 79, 0.636);
+      }
     </style>
   </head>
 
@@ -61,6 +66,7 @@
   <div id="cp-body">
     <script>
       const c = new CommandPal({
+        id: 'MyCommandPal',
         hotkey: "ctrl+space",
         commands: [
           {

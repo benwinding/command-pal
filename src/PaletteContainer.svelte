@@ -1,6 +1,5 @@
 <script>
   export let show = false;
-  export let paletteId;
 </script>
 
 <style>
@@ -48,7 +47,7 @@
 } */
 </style>
 
-<div class="modal-mask" class:hidden={!show} id={paletteId + "-mask"}>
+<div class="modal-mask" class:hidden={!show}>
   <div class="modal-wrapper">
     <div class="modal-container">
       <div class="search-box">
