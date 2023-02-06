@@ -132,8 +132,8 @@ const c = new CommandPal({
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
   id: "CommandPal", // adds unique ID to aid in targeting with CSS
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
+  debugOuput: false, // if true report debugging info to console
   hideButton: false, // if true, do not generate mobile button
-
   commands: [
     // Commands go here
   ]

@@ -3,7 +3,7 @@ import pubsub from "micro-pubsub";
 
 class CommandPal {
   constructor(options) {
-    console.log("CommandPal", { options });
+    if (options.debugOutput) { console.log("CommandPal", { options });}
     this.options = options || {};
     this.ps = pubsub.create();
   }
