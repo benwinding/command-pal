@@ -10,7 +10,6 @@ export function initShortCuts(bindToInputsToo) {
     Appears to not work. Setting scope to "all" does work. // rouilj
     */
     hotkeys.filter = function(event){
-      var tagName = (event.target || event.srcElement).tagName;
       hotkeys.setScope('all');
       return true;
     }
