@@ -46,6 +46,8 @@
                       </li>
                       <li class="heading-item -depth-3"><a class="hlink link-addremove-command's-at-runtime" href="#addremove-command's-at-runtime">Add/Remove Command's At Runtime</a>
                       </li>
+                      <li class="heading-item -depth-3"><a class="hlink link-styling-commandpal-instances" href="#styling-commandpal-instances">Styling CommandPal instances</a>
+                      </li>
                     </ul>
                   </li>
                   <li class="heading-item -depth-2"><a class="hlink link-local-development" href="#local-development">Local Development</a>
@@ -181,6 +183,7 @@ c.start();
 <pre><code class="lang-js"><span class="pl-k">const</span> c = <span class="pl-k">new</span> CommandPal({
   <span class="hljs-attr">hotkey</span>: <span class="pl-s">&quot;ctrl+space&quot;</span>,  <span class="pl-c">// Launcher shortcut</span>
   <span class="hljs-attr">hotkeysGlobal</span>: <span class="pl-c1">true</span>,       <span class="pl-c">// Makes shortcut keys work in any &lt;textarea&gt;, &lt;input&gt; or &lt;select&gt;</span>
+  <span class="hljs-attr">id</span>: <span class="pl-s">&quot;CommandPal&quot;</span>, <span class="pl-c">// adds unique ID to aid in targeting with CSS</span>
   <span class="hljs-attr">placeholder</span>: <span class="pl-s">&quot;Custom placeholder text...&quot;</span>, <span class="pl-c">//  Changes placeholder text of input</span>
   <span class="hljs-attr">commands</span>: [
     <span class="pl-c">// Commands go here</span>
@@ -251,6 +254,24 @@ c.subscribe(<span class="pl-s">&quot;closed&quot;</span>, (e) =&gt; { <span clas
   <span class="hljs-attr">commands</span>: commands,
 });
 c.start();
+</code></pre>
+<h3 id="styling-commandpal-instances">Styling CommandPal instances</h3>
+<p>The styles used by command-pal are included in the package. However you can override the default CSS using the following.</p>
+<pre><code class="lang-css">  <span class="pl-c">/* mobile button */</span>
+  <span class="hljs-selector-id">#CommandPal</span> <span class="hljs-selector-class">.mobile-button</span>  { <span class="pl-e">top</span>: <span class="hljs-number">30px</span>; }
+  <span class="pl-c">/* modal background */</span>
+  <span class="hljs-selector-id">#CommandPal</span> <span class="hljs-selector-class">.modal-mask</span> { <span class="pl-e">background-color</span>: <span class="pl-c1">rgb</span>(<span class="hljs-number">0</span>,<span class="hljs-number">128</span>,<span class="hljs-number">200</span>,<span class="hljs-number">0.75</span>); }
+  <span class="pl-c">/* item background */</span>
+  <span class="hljs-selector-id">#CommandPal</span> <span class="hljs-selector-attr">[slot=items]</span> { <span class="pl-e">background-color</span>: yellow;}
+  <span class="pl-c">/* item text */</span>
+  <span class="hljs-selector-id">#CommandPal</span> <span class="hljs-selector-class">.item</span> { <span class="pl-e">color</span>:black; }
+</code></pre>
+<p>You can also assign a custom <code>id</code> to the CommandPal instance.</p>
+<pre><code class="lang-js">   c = CommandPal(..., <span class="hljs-attr">id</span>: <span class="pl-s">&apos;mypal&apos;</span>,)
+</code></pre>
+<p>Which allows you to style a specific instance.</p>
+<pre><code class="lang-css">  <span class="pl-c">/* mobile button for CommandPal with id=&apos;mypal&apos; */</span>
+  <span class="hljs-selector-id">#mypal</span> <span class="hljs-selector-class">.mobile-button</span>  { <span class="pl-e">top</span>: <span class="hljs-number">30px</span>; <span class="pl-e">bottom</span>: auto;}
 </code></pre>
 <h2 id="local-development">Local Development</h2>
 <p>To develop on <code>command-pal</code> simply clone, install and run</p>

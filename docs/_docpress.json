@@ -78,6 +78,11 @@
                 "title": "Add/Remove Command's At Runtime",
                 "depth": 3,
                 "id": "addremove-command's-at-runtime"
+              },
+              {
+                "title": "Styling CommandPal instances",
+                "depth": 3,
+                "id": "styling-commandpal-instances"
               }
             ]
           },
@@ -173,6 +178,11 @@
               "title": "Add/Remove Command's At Runtime",
               "depth": 3,
               "id": "addremove-command's-at-runtime"
+            },
+            {
+              "title": "Styling CommandPal instances",
+              "depth": 3,
+              "id": "styling-commandpal-instances"
             }
           ]
         },
