@@ -17,6 +17,8 @@ class CommandPal {
         inputData: this.options.commands || [],
         paletteId: this.options.id || "CommandPal",
         placeholderText: this.options.placeholder || "What are you looking for?",
+        hotkeysGlobal: this.options.hotkeysGlobal || false,
+        noButton: this.options.noButton || false,
       },
     });
     const ctx = this;

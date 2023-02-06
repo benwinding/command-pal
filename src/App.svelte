@@ -17,6 +17,7 @@
   export let inputData = [];
   export let hotkeysGlobal;
   export let placeholderText;
+  export let noButton;
   export let paletteId;
 
   const optionsFuse = {
@@ -138,7 +139,9 @@
 </script>
 
 <div id={paletteId}>
-  <MobileButton on:click={onMobileClick} />
+  {#if !noButton}
+    <MobileButton on:click={onMobileClick} />
+  {/if}
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
       <SearchField
