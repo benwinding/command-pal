@@ -166,6 +166,8 @@ c.subscribe("closed", (e) => { console.log("closed", { e }); });
   name: "Open Messages",
   // Required name of command (displayed)
   description: "View all messages in inbox",
+  // HTML string to display an icon e.g. for </>
+  icon: "<span class="icon">&lt;/&gt;</span>",
   // Shortcut of command
   shortcut: "ctrl+3",
   // Callback function of the command to execute
@@ -176,6 +178,32 @@ c.subscribe("closed", (e) => { console.log("closed", { e }); });
   children: [...]
 },
 ```
+
+#### Adding Icons
+
+The `icon` property is interpreted as HTML and used as a 24x24 icon to
+the left of the menu item.
+
+If the icon property is not provided, an empty svg will be
+generated. This keeps the commands aligned when only some commands
+have icons. To remove/hide the empty svg, add `svg.cp-placeholder {
+display: none; }` to your CSS. This will move all commands without an
+icon property flush to the left of the list box.
+
+The icon property can be set to `null`. In this case, no placeholder
+icon will be generated. This will move the command flush to the left
+of the list box.
+
+If the icon property is set to a string, it is inserted as is into the
+list box. You can insert characters as the icon (make sure to use
+entities for characters like `<`).  Use `&nbsp;` to left pad the
+character strings as needed. You should wrap the string in `<span
+class="icon">` and `</span>` tags. This truncates the string at 24px
+matching alignment with svg or img icons.
+
+You can also include an `svg` or an `img` tag. For svg tags, you may
+want to use CSS styling to set the `fill` property to `currentcolor`
+so the svg strokes match the text color.
 
 ### Command Item Child
 
