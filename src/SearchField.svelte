@@ -77,6 +77,7 @@
   bind:value={inputValue}
   id={inputName}
   name={inputName}
+  data-id="cp-SearchField"
   on:blur={onFieldBlur}
   on:keydown={onKeyDown}
   on:input={onTextChanged}
