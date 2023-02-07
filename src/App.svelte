@@ -52,6 +52,7 @@
       onHandleCommand(command);
     });
     storeDisplayPaletteMethod(async active_state => {
+       if (! showModal) {focusedElement = document.activeElement}
        if (active_state === undefined) {
        	  showModal = !showModal;
        } else if ([true, false].includes(active_state)) {
