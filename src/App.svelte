@@ -41,6 +41,7 @@
       if (showModal) {
 	onClosed()
       } else {
+	focusedElement = document.activeElement
 	showModal = true;
 	selectedIndex = 0;
 	dispatch("opened");
