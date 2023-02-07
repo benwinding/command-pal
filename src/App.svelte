@@ -18,6 +18,7 @@
   export let hotkeysGlobal;
   export let placeholderText;
   export let displayHints;
+  export let debugOutput;
 
   // re: space '(' alphanumeric_word_char
   //            "0 or more word_char space/tab and -" ')'
@@ -162,10 +163,6 @@
       if (! hinted) {
 	search_result.item.name += hint
       } else {
-	// re: space '(' alphanumeric_word_char
-	//            "0 or more word_char space char and -" ')'
-	//            end of line
-	// Note: this will not work for non-latin.
 	search_result.item.name = search_result.item.name.replace(hintRegexp, hint)
       }
       search_result.item.hinted = true
@@ -183,7 +180,7 @@
       console.debug('weight', search_result.item.weight)
       console.debug('hints', e.length)
       console.table(search_result.matches.filter( (i) => {
-	if (i.key ==="aliases") {
+	if (i.key === "aliases") {
 	  i.sum = match_index(i);
 	  return true;
 	}
@@ -192,7 +189,6 @@
       console.groupEnd("CommandPal " + search_result.item.name);
     }
     return search_result.item
->>>>>>> 222e59a (Add comments rename parameter i -> search_result)
   }
 
   function onTextChange(e) {
