@@ -67,7 +67,7 @@
   .item:hover {
     cursor: pointer;
   }
-  .item span {
+  .item span.command {
     flex-grow: 1;
   }
   .item :global(img) {
@@ -119,11 +119,11 @@
             <svg fill="#000000" class="cp-placeholder" height="24" width="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
         {/if}
       {/if}
-      <span>{item.name}</span>
+      <span class="command">{item.name}</span>
       {#if !!item.shortcut}
         <kyb>{item.shortcut}</kyb>
       {:else}
-        <span />
+        <span class="cp-placeholder"/>
       {/if}
     </p>
   {/each}
