@@ -19,6 +19,7 @@
   export let placeholderText;
   export let hideButton;
   export let paletteId;
+  export let footerText;
 
   const optionsFuse = {
     isCaseSensitive: false,
@@ -159,6 +160,15 @@
         items={itemsFiltered}
         {selectedIndex}
         on:clickedIndex={onClickedIndex} />
+    </div>
+    <!-- when svelte gets conditional slots
+           https://github.com/sveltejs/svelte/issues/5604
+         re-implement to remove the empty div.hidden.
+    --> 
+    <div class="{ footerText === null ? 'hidden': 'footer' }" slot="footer">
+      {#if footerText !== null }
+        {footerText}
+      {/if}
     </div>
   </PaletteContainer>
 </div>

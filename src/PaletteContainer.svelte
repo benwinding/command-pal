@@ -42,6 +42,14 @@
   .search-box {
     padding: 7px;
   }
+  :global(.footer) {
+   background-color: rgba(0, 0, 0, 0.33);
+   border-block-start: black ridge 2px;
+   color: #ddd;
+   font-size: smaller;
+   padding-block-start: 0.1em;
+   padding-inline: 0.5em;
+  }
   /* .search:focus {
   color: white;
 } */
@@ -55,6 +63,7 @@
       </div>
       <div>
         <slot name="items" />
+        <slot name="footer" />
       </div>
     </div>
   </div>

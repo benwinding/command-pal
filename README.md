@@ -134,6 +134,8 @@ const c = new CommandPal({
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   debugOuput: false, // if true report debugging info to console
   hideButton: false, // if true, do not generate mobile button
+  footerText: null,  // Text to display in the footer of the palette.
+                     // If null (default), do not add footer.
   commands: [
     // Commands go here
   ]
@@ -232,6 +234,10 @@ The styles used by command-pal are included in the package. However you can over
   #CommandPal [slot=items] { background-color: yellow;}
   /* item text */
   #CommandPal .item { color:black; }
+  /* footers (optional) in all command-pal instances */
+  .footer[slot=footer] { background-color: gold; color: black;}	
+  /* explicitly override footer styling for one instance */
+  #CommandPal .footer { background-color: gold; color: black;}
 ```
 
 You can also assign a custom `id` to the CommandPal instance.
