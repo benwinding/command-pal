@@ -26,7 +26,8 @@
   }
 
   function onKeyDown(e) {
-    const keyCode = e.code.toLowerCase();
+    let keyCode = e.key.toLowerCase();
+
     if (keyCode === "enter") {
       dispatch("enter", inputValue);
       onBlur();
