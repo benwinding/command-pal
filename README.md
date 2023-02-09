@@ -171,45 +171,13 @@ c.subscribe("closed", (e) => { console.log("closed", { e }); });
   // Callback function of the command to execute
   handler: (e) => {
     // DO SOMETHING
-  }
+  },
+  orderedCommands: false, // set true if command array is ordered/weighted
+                          // see below on Order of Matched Items
   // Child commands which can be executed
   children: [...]
 },
 ```
-
-#### Aliases and Hints
-
-The aliases property is included by the fuzzy search. So searching for
-terms in the aliases array always works. Matches in the aliases array
-are weighted twice that of the name or description fields. However
-setting the `displayHints` option for `CommandPal` to `true` displays
-the best matching alias next to the command.
-
-For example suppose the `Open Messages` command has aliases of `See`
-and `View`. Typing `se` will display `Open Messages (See)` indicating
-that you should use the `Open Messages` command to see your messages.
-It helps explain what's being matched and why `Open Messages` is
-displayed when `see` is typed.  Similarly typing `vi` will produce
-`Open Messages (View)` in the command list. If you were to type `v`
-you would start with `Open Messages (View)` then typing `e` would
-result in `Open Messages (See)`. By default `displayHints` is
-disabled.
-
-The fuse.js fuzzy matcher returns match info. This indicates where it
-found matches to the search input.  This information is used to select
-the top hint to display to the user. For each match in the aliases
-array, the score is the count of the number of matching characters
-with a little extra weight given to matches at the beginning of the
-alias. If two terms have the same weight, the term more to the left in
-the array is chosen. To get the best use from this, order your terms
-putting the most used terms first in the array. This scoring method is
-a work in progress and may change in the future.
-
-Also keep your aliases short when possible. Don't include terms in the
-alias that are already in the command. This helps prevent skewing of
-the scores (due to the same term being matched multiple times). It also
-keeps the command text size down making it more readable.
-Aliases in non-Latin languages should work.
 
 ### Command Item Child
 
@@ -252,6 +220,70 @@ const c = new CommandPal({
 });
 c.start();
 ```
+
+#### Aliases and Hints
+
+The aliases property is included by the fuzzy search. So searching for
+terms in the aliases array always works. Matches in the aliases array
+are weighted twice that of the name or description fields. However
+setting the `displayHints` option for `CommandPal` to `true` displays
+the best matching alias next to the command.
+
+For example suppose the `Open Messages` command has aliases of `See`
+and `View`. Typing `se` will display `Open Messages (See)` indicating
+that you should use the `Open Messages` command to see your messages.
+It helps explain what's being matched and why `Open Messages` is
+displayed when `see` is typed.  Similarly typing `vi` will produce
+`Open Messages (View)` in the command list. If you were to type `v`
+you would start with `Open Messages (View)` then typing `e` would
+result in `Open Messages (See)`. By default `displayHints` is
+disabled.
+
+The fuse.js fuzzy matcher returns match info. This indicates where it
+found matches to the search input.  This information is used to select
+the top hint to display to the user. For each match in the aliases
+array, the score is the count of the number of matching characters
+with a little extra weight given to matches at the beginning of the
+alias. If two terms have the same weight, the term more to the left in
+the array is chosen. To get the best use from this, order your terms
+putting the most used terms first in the array. This scoring method is
+a work in progress and may change in the future.
+
+Also keep your aliases short when possible. Don't include terms in the
+alias that are already in the command. This helps prevent skewing of
+the scores (due to the same term being matched multiple times). It also
+keeps the command text size down making it more readable.
+Aliases in non-Latin languages should work.
+
+### Order of Matched Items
+
+There are two ways to sort the matched items. You can use the score
+returned by the fuse.js fuzzy-search library. In many fuzzy searches,
+when the scores show that the confidence in the match is not high, you
+can nudge it to return a better order.
+
+To do that with command-pal, you should order your commands from most
+used/likely choice to worst/least used. Then set: `orderedCommands:
+true` when calling CommandPal.
+
+To allow you to nudge the results, the sort function for fuse.js is
+replaced.  The new sort function establishes a threshold for a high
+confidence match. If the match is high confidence, the function sorts
+the results using the score from fuse.js. If the confidence is lower,
+all results that fall in a given range get bucketed together. The sort
+function sorts the results to the order of its entry in the command
+array.
+
+E.G. In the commands array: `cat` is 10th and `car` is 15th. If the
+current search term returns scores for `cat` and `car` that are close
+to each other, cat(10) will sort before car(15). This will happen even
+if `car` has a better score than `cat`. If you reverse the positions
+of `cat` and `car` in the array, they will sort in the opposite
+direction.
+
+The algorithm is simple. But it does allow you, the developer, to
+nudge the order of the results in the direction you want. See the code
+for the current values used in the algorithm.
 
 ## Local Development
 
