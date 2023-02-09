@@ -204,7 +204,11 @@
       removeHints(itemsFiltered);
     } else {
       const fuseResult = fuse.search(text);
+      if (debugOutput && displayHints) console.groupCollapsed(
+        "CommandPal search: " + text)
       itemsFiltered = fuseResult.map(processResult);
+      if (debugOutput && displayHints) console.groupEnd(
+        "CommandPal search: " + text)
     }
   }
 
