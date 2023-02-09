@@ -152,7 +152,7 @@
      * weighting factors that seem to work. Formula and number may
      * change.
     */
-    let match_metric = (a) => ( a.indices.map(
+    let match_metric = (indices) => ( indices.map(
       range => range[0] == 0 ?
 	((range[1] - range[0])
 	 * 2.5) + 1.5 :
@@ -160,8 +160,8 @@
      ).reduce((sum, val) => sum+val))
     
     const e = search_result.matches.filter(i => i.key === "aliases").sort((a,b) => {
-      let a_mm = match_metric(a)
-      let b_mm = match_metric(b)
+      let a_mm = match_metric(a.indices)
+      let b_mm = match_metric(b.indices)
       // match_metric describes number of matches characters current
       // search term matches. So the higher the better.
       // assume alias array referenced by refIndex has higher prio
@@ -193,7 +193,7 @@
       console.debug('hints', e.length)
       console.table(search_result.matches.filter( (i) => {
 	if (i.key === "aliases") {
-	  i.sum = match_metric(i);
+	  i.metric = match_metric(i.indices);
 	  return true;
 	}
 	return false;
