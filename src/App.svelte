@@ -31,6 +31,7 @@
     isCaseSensitive: false,
     shouldSort: true,
     keys: ["name", "description", {name: "aliases", weight: 2}],
+    includeScore: true,
     includeMatches: true,
     sortFn: function (a,b) {
       // This is the same stable sorting function supplied by fuse.
