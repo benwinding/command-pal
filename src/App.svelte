@@ -138,10 +138,21 @@
 
   /** append best aliases match to command object's name */
   function hintMatch(search_result) {
-    // get a series of range matches for the characters. [0,0] indicates
-    // first char of term matched. So it counts for 1.5 point. [6,7]
-    // indicating 2 chars match counts for 2 points.
-    let match_index = (a) => ( a.indices.map(
+    /**
+     * Accepts an array of 2 element arrays. These are the start/stop
+     * that matched the search term for the current match. A metric
+     * is calculated from these. Larger values indicate better matches.
+     *
+     * @param {array} indexList - list of 2 element lists
+     * 
+     * For each index_list use the [start, end] range to calculate a
+     * score. [0,*] indicates first char of term matched. It counts
+     * for an additional 0.5 points. Each multi character match [6,7]
+     * (2 chars) counts for 2.5 points/char. All numbers are magic
+     * weighting factors that seem to work. Formula and number may
+     * change.
+    */
+    let match_metric = (a) => ( a.indices.map(
       range => range[0] == 0 ?
 	((range[1] - range[0])
 	 * 2.5) + 1.5 :
@@ -149,13 +160,13 @@
      ).reduce((sum, val) => sum+val))
     
     const e = search_result.matches.filter(i => i.key === "aliases").sort((a,b) => {
-      let a_mi = match_index(a)
-      let b_mi = match_index(b)
-      // match_index describes number of matches characters current
+      let a_mm = match_metric(a)
+      let b_mm = match_metric(b)
+      // match_metric describes number of matches characters current
       // search term matches. So the higher the better.
       // assume alias array referenced by refIndex has higher prio
       // at lower indexes. So the lower the better.
-      return a_mi == b_mi? a.refIndex > b.refIndex : a_mi < b_mi
+      return a_mm == b_mm? a.refIndex > b.refIndex : a_mm < b_mm
     })
     let hinted = !!search_result.item.hinted
     if ( e.length ) {
@@ -182,7 +193,7 @@
       console.debug('hints', e.length)
       console.table(search_result.matches.filter( (i) => {
 	if (i.key === "aliases") {
-	  i.sum = match_index(i);
+	  i.sum = match_metric(i);
 	  return true;
 	}
 	return false;
