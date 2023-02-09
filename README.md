@@ -134,6 +134,10 @@ const c = new CommandPal({
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   debugOuput: false, // if true report debugging info to console
   hideButton: false, // if true, do not generate mobile button
+  backspaceCloseCount: 0, // this number of backspaces typed in an
+                          // empty search input will close, command-pal.
+                          // Allows closing with keyboard on mobile devices.
+                          // Default value of 0 prevents closing on backspace.
   commands: [
     // Commands go here
   ]
