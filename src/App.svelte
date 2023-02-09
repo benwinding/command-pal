@@ -19,6 +19,7 @@
   export let placeholderText;
   export let hideButton;
   export let paletteId;
+  export let backspaceCloseCount;
 
   const optionsFuse = {
     isCaseSensitive: false,
@@ -146,6 +147,7 @@
     <div slot="search">
       <SearchField
         placeholderText={placeholderText}
+        backspaceCloseCount={backspaceCloseCount}
         show={showModal}
         bind:inputEl={searchField}
         on:closed={onClosed}

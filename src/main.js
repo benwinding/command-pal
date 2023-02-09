@@ -19,6 +19,8 @@ class CommandPal {
         placeholderText: this.options.placeholder || "What are you looking for?",
         hotkeysGlobal: this.options.hotkeysGlobal || false,
         hideButton: this.options.hideButton || false,
+        // # of consecutive backspaces to exit. 0: don't exit on backspace.
+        backspaceCloseCount: this.options.backspaceCloseCount || 0
       },
     });
     const ctx = this;
