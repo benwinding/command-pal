@@ -176,28 +176,29 @@
           ( a_mm > b_mm? -1 : 1)
       })
 
-    let hinted = !!search_result.item.hinted
+    let item = search_result.item
+    let hinted = !!item.hinted
     if ( e.length ) {
       /* add hints */
       const hint = ` (${e[0].value})`
       if (! hinted) {
-	search_result.item.name += hint
+	item.name += hint
       } else {
-	search_result.item.name = search_result.item.name.replace(hintRegexp, hint)
+	item.name = item.name.replace(hintRegexp, hint)
       }
-      search_result.item.hinted = true
+      item.hinted = true
     } else {
-      if (search_result.item.hinted) {
+      if (item.hinted) {
 	/* remove previous hints */
-	search_result.item.name = search_result.item.name.replace(hintRegexp, '')
-	search_result.item.hinted = false
+	item.name = search_result.item.name.replace(hintRegexp, '')
+	item.hinted = false
       }
     }
     if (debugOutput) {
-      console.group("CommandPal " + search_result.item.name);
+      console.group("CommandPal " + item.name);
       console.debug('score', search_result.score)
       console.debug('index', search_result.refIndex)
-      console.debug('weight', search_result.item.weight)
+      console.debug('weight', item.weight)
       console.debug('hints', e.length)
       console.table(search_result.matches.filter( (i) => {
 	if (i.key === "aliases") {
@@ -206,7 +207,7 @@
 	}
 	return false;
       }))
-      console.groupEnd("CommandPal " + search_result.item.name);
+      console.groupEnd("CommandPal " + item.name);
     }
     return search_result.item
   }
