@@ -190,7 +190,7 @@
     } else {
       if (item.hinted) {
 	/* remove previous hints */
-	item.name = search_result.item.name.replace(hintRegexp, '')
+	item.name = item.name.replace(hintRegexp, '')
 	item.hinted = false
       }
     }
@@ -209,7 +209,7 @@
       }))
       console.groupEnd("CommandPal " + item.name);
     }
-    return search_result.item
+    return item
   }
 
   function onTextChange(e) {
