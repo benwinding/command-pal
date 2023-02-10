@@ -34,7 +34,9 @@
   }
 </style>
 
-<button class="mobile-button" on:click={e => dispatch('click')} title="Click here to open command palette">
+<button class="mobile-button" on:click={e => dispatch('click')}
+    on:focus={e=>dispatch('focus', e)}
+    title="Click here to open command palette.">
   <svg
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns="http://www.w3.org/2000/svg"
