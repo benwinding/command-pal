@@ -26,12 +26,12 @@
     "@rollup/plugin-node-resolve": "^7.0.0",
     "docpress": "^0.8.1",
     "gh-pages": "^2.2.0",
-    "rollup": "^1.20.0",
+    "rollup": "2",
     "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-svelte": "6.x",
     "rollup-plugin-terser": "^5.1.2",
     "serve": "^11.3.2",
-    "svelte": "^3.0.0"
+    "svelte": "^3.55.1"
   },
   "dependencies": {
     "fuse.js": "^5.2.3",
