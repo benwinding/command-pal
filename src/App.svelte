@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Fuse from "fuse.js";
   import PaletteContainer from "./PaletteContainer.svelte";
   import CommandList from "./CommandList.svelte";
