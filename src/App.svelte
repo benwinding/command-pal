@@ -38,10 +38,14 @@
   onMount(() => {
     initShortCuts(hotkeysGlobal);
     setMainShortCut(hotkey, async () => {
-      focusedElement = document.activeElement
-      showModal = true;
-      selectedIndex = 0;
-      dispatch("opened");
+      if (showModal) {
+      	onClosed()
+      } else {
+        focusedElement = document.activeElement
+        showModal = true;
+        selectedIndex = 0;
+        dispatch("opened");
+      }
     });
     setAllShortCuts(inputData, async command => {
       focusedElement = document.activeElement
