@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import Fuse from "fuse.js";
   import PaletteContainer from "./PaletteContainer.svelte";
   import CommandList from "./CommandList.svelte";
   import SearchField from "./SearchField.svelte";
   import MobileButton from "./MobileButton.svelte";
-  import { setContext, onMount, createEventDispatcher } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
   import {
     asyncTimeout,
     setMainShortCut,
@@ -13,13 +13,15 @@
   } from "./shortcuts";
   const dispatch = createEventDispatcher();
 
-  export let hotkey;
+  export let hotkey: string;
   export let inputData = [];
-  export let hotkeysGlobal;
-  export let placeholderText;
-  export let displayHints;
-  export let debugOutput;
-  export let orderedCommands;
+  export let hotkeysGlobal: any;
+  export let placeholderText: string;
+  export let hideButton: boolean;;
+  export let paletteId: string;
+  export let displayHints: boolean;
+  export let debugOutput: boolean;
+  export let orderedCommands: boolean;
 
   // re: space '(' alphanumeric_word_char
   //            "0 or more word_char space/tab and -" ')'
@@ -70,8 +72,7 @@
   let showModal = false;
   let searchField;
   let loadingChildren = false;
-  let currentText = "";
-  let selectedIndex = "";
+  let selectedIndex: any = "";
   let items = inputData;
   let itemsFiltered = inputData;
   let fuse = new Fuse(items, optionsFuse);
@@ -272,8 +273,10 @@
   }
 </script>
 
-<div>
-  <MobileButton on:click={onMobileClick} />
+<div id={paletteId}>
+  {#if !hideButton}
+    <MobileButton on:click={onMobileClick} />
+  {/if}
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
       <SearchField

@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: 🚀 Build and Publish
+name: 🚀 Build and Publish Lib
 jobs:
   build:
     name: Deploy Library
@@ -20,14 +20,14 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
       - name: Install Dependencies
         if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: npm install
+        run: yarn install --pure-lockfile
       - name: Build Library
-        run: npm run-script build
+        run: yarn build
       - name: Build Test
-        run: npm run-script test
+        run: yarn test
       - name: 🚀 Publish (if on master)
         uses: mikeal/merge-release@master
         env:

@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: 🚀 Build and Publish
+name: 🚀 Deploy Demo (github pages)
 jobs:
   build:
     name: Deploy Library
@@ -20,12 +20,12 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
       - name: Install Dependencies
         if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: npm install
+        run: yarn install --pure-lockfile
       - name: Build Library
-        run: npm run-script build-all
+        run: yarn build-all
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:

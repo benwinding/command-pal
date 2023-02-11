@@ -94,7 +94,7 @@ const c = new CommandPal({
 c.start();
 ```
 
-### Usage - Avanced
+### Usage - Advanced
 
 ``` js
 const c = new CommandPal({
@@ -130,7 +130,10 @@ c.start();
 const c = new CommandPal({
   hotkey: "ctrl+space",  // Launcher shortcut
   hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
+  id: "CommandPal", // adds unique ID to aid in targeting with CSS
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
+  debugOuput: false, // if true report debugging info to console
+  hideButton: false, // if true, do not generate mobile button
   displayHints: false,  // if true, aliases are displayed as command hints
   commands: [
     // Commands go here
@@ -187,7 +190,7 @@ Note: Child commands cannot have shortcuts.
 {
   // Required name of command (displayed)
   name: "Open Messages",
-  // Required name of command (displayed)
+  // Description of command, used in matching command (not displayed)
   description: "View all messages in inbox",
   // Callback function of the command to execute
   handler: (e) => {
@@ -219,6 +222,34 @@ const c = new CommandPal({
   commands: commands,
 });
 c.start();
+```
+
+### Styling CommandPal instances
+
+The styles used by command-pal are included in the package. However you can override the default CSS using the following.
+
+```css
+  /* mobile button */
+  #CommandPal .mobile-button  { top: 30px; }
+  /* modal background */
+  #CommandPal .modal-mask { background-color: rgb(0,128,200,0.75); }
+  /* item background */
+  #CommandPal [slot=items] { background-color: yellow;}
+  /* item text */
+  #CommandPal .item { color:black; }
+```
+
+You can also assign a custom `id` to the CommandPal instance.
+
+```js
+   c = CommandPal(..., id: 'mypal',)
+```
+
+Which allows you to style a specific instance.
+
+```css
+  /* mobile button for CommandPal with id='mypal' */
+  #mypal .mobile-button  { top: 30px; bottom: auto;}
 ```
 
 #### Aliases and Hints
@@ -295,6 +326,20 @@ npm run dev
 Then the following link:
 
 - http://localhost:5005/cp-advanced/local-dev.html
+
+### Prevent Blur
+
+When the search input loses focus (receives a blur event), the palette
+closes. This makes inspecting the palette using the browser's DevTools
+difficult, as switching to DevTools causes the focus to be lost. It is
+possible to stop the palette from closing when focus is lost.
+
+``` js
+// Disable palette from closing during testing
+window.commandPalIgnoreBlur = true;
+// Re-enable
+window.commandPalIgnoreBlur = false;
+```
 
 Have a go, PR's and issues always welcome.
 

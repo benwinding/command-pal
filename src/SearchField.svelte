@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import { asyncTimeout } from "./shortcuts";
@@ -20,10 +20,17 @@
     inputValue = "";
   }
 
+  function onFieldBlur() {
+    if (window.commandPalIgnoreBlur) return;
+    onBlur();
+  }
+
   function onKeyDown(e) {
-    const keyCode = e.code.toLowerCase();
+    let keyCode = e.key.toLowerCase();
+
     if (keyCode === "enter") {
       dispatch("enter", inputValue);
+      onBlur();
     } else if (keyCode === "arrowdown") {
       dispatch("arrowdown");
     } else if (keyCode === "arrowup") {
@@ -71,7 +78,7 @@
   bind:value={inputValue}
   id={inputName}
   name={inputName}
-  on:blur={onBlur}
+  on:blur={onFieldBlur}
   on:keydown={onKeyDown}
   on:input={onTextChanged}
   autocomplete="no"
