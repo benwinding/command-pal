@@ -35,6 +35,8 @@
       dispatch("arrowdown");
     } else if (keyCode === "arrowup") {
       dispatch("arrowup");
+    } else if (keyCode === "backspace" && e.shiftKey) {
+     inputValue = "";
     } else if (keyCode === "escape") {
       onBlur();
     }
