@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 </script>
@@ -36,10 +36,7 @@
 
 <button class="mobile-button" on:click={e => dispatch('click')} title="Click here to open command palette">
   <svg
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:cc="http://creativecommons.org/ns#"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
     viewBox="0 0 24 24"
     version="1.1">
     <g transform="translate(0 -1028.4)">

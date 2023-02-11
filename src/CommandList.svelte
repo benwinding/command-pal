@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  export let items = [];
+  export let items: any = [];
   export let selectedIndex = 0;
   let selectedIndexLast = 0;
 
-  let listEl;
+  let listEl: HTMLDivElement;
 
-  function clickedIndex(e, hoverIndex) {
+  function clickedIndex(e: any, hoverIndex: number) {
     const isPrimaryButton = e.which === 1;
     if (!isPrimaryButton) {
       return;
@@ -19,7 +19,7 @@
     if (!listEl) {
       return;
     }
-    const listItemEl = listEl.querySelector(".items-list .selected");
+    const listItemEl: HTMLDivElement | null = listEl.querySelector(".items-list .selected");
     if (!listItemEl) {
       return;
     }
