@@ -39,7 +39,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "fuse.js": "^5.2.3",
+    "fuse.js": "^6.6.2",
     "hotkeys-js": "^3.7.6",
     "micro-pubsub": "1.0.0"
   }

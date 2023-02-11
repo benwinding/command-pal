@@ -19,13 +19,47 @@
   export let placeholderText: string;
   export let hideButton: boolean;;
   export let paletteId: string;
+  export let displayHints: boolean;
+  export let debugOutput: boolean;
+  export let orderedCommands: boolean;
+
+  // re: space '(' alphanumeric_word_char
+  //            "0 or more word_char space/tab and -" ')'
+  //            end of line
+  // Note: this should be the unicode equivalent of the Latin regexp:
+  //    / \(\w[\s\w-]*\)$/
+  let hintRegexp = / \([ \u0000-\u0019\u0021-\uFFFF_-]+\)$/u;
 
   const optionsFuse = {
     isCaseSensitive: false,
     shouldSort: true,
-    keys: ["name", "description"]
+    keys: ["name", "description", {name: "aliases", weight: 2}],
+    includeScore: true,
+    includeMatches: true,
   };
 
+  if ( orderedCommands ) {
+    optionsFuse.sortFn = function(a, b) {
+      const belowThreshold = a.score < 0.009 || b.score < 0.009;
+      const scoresAreEqual = a.score === b.score;
+      const scoresClose = Math.abs(a.score - b.score) < 0.05;
+
+      if (belowThreshold) {
+        return a.score < b.score ? -1 : 1;
+      } else if (scoresClose) {
+        return a.idx < b.idx ? -1 : 1;
+      } else if (scoresAreEqual) {
+        return a.idx < b.idx ? -1 : 1;
+      } else {
+        return a.score < b.score ? -1 : 1;
+      }
+    }
+    if (debugOutput) console.log('Using commands weighted sort');
+
+  } else {
+    if (debugOutput) console.log("Using fuse.js's score for sorting");
+  }
+    
   let showModal = false;
   let searchField;
   let loadingChildren = false;
@@ -114,15 +148,106 @@
     }
   }
 
+  function removeHints(items) {
+    if (! displayHints ) return;
+    items.map( (i) => { if ( i.hinted ) {
+      i.name = i.name.replace(hintRegexp, '');
+      i.hinted = false
+    }})
+  }
+
+  /** append best aliases match to command object's name */
+  function hintMatch(search_result) {
+    /**
+     * Accepts an array of 2 element arrays. These are the start/stop
+     * that matched the search term for the current match. A metric
+     * is calculated from these. Larger values indicate better matches.
+     *
+     * @param {array} indexList - list of 2 element lists
+     * 
+     * For each index_list use the [start, end] range to calculate a
+     * score. [0,*] indicates first char of term matched. It counts
+     * for an additional 0.5 points. Each multi character match [6,7]
+     * (2 chars) counts for 2.5 points/char. All numbers are magic
+     * weighting factors that seem to work. Formula and number may
+     * change.
+    */
+    let match_metric = (indices) => ( indices.map(
+      range => range[0] == 0 ?
+	((range[1] - range[0])
+	 * 2.5) + 1.5 :
+	((range[1] - range[0]) * 2.5) + 1
+     ).reduce((sum, val) => sum+val))
+    
+    const e = search_result.matches.filter(
+      i => i.key === "aliases").sort((a,b) => {
+	let a_mm = match_metric(a.indices)
+	let b_mm = match_metric(b.indices)
+
+	// a higher match_metric is assigned to a term that is a
+	// better match for the search.
+	// Sort by higher match_metric. If match_metrics are equal,
+	// sort the one with the lower index in the aliases array
+	// first. (Put the best choice aliases first.)
+	//    1 - sort b before a; -1 sort a before b.
+	// note: a.refIndex can never equal b.refIndex
+	return a_mm == b_mm ?
+      	  (a.refIndex < b.refIndex ? -1 : 1) :
+          ( a_mm > b_mm? -1 : 1)
+      })
+
+    let item = search_result.item
+    let hinted = !!item.hinted
+    if ( e.length ) {
+      /* add hints */
+      const hint = ` (${e[0].value})`
+      if (! hinted) {
+	item.name += hint
+      } else {
+	item.name = item.name.replace(hintRegexp, hint)
+      }
+      item.hinted = true
+    } else {
+      if (item.hinted) {
+	/* remove previous hints */
+	item.name = item.name.replace(hintRegexp, '')
+	item.hinted = false
+      }
+    }
+    if (debugOutput) {
+      console.group("CommandPal " + item.name);
+      console.debug('score', search_result.score)
+      console.debug('index', search_result.refIndex)
+      console.debug('weight', item.weight)
+      console.debug('hints', e.length)
+      console.table(search_result.matches.filter( (i) => {
+	if (i.key === "aliases") {
+	  i.metric = match_metric(i.indices);
+	  return true;
+	}
+	return false;
+      }))
+      console.groupEnd();
+    }
+    return item
+  }
+
   function onTextChange(e) {
     const text = e.detail;
     dispatch("textChanged", text);
     selectedIndex = 0;
+
+    const processResult = displayHints ? hintMatch: (i) => i.item
+      
     if (!text) {
       itemsFiltered = items;
+      removeHints(itemsFiltered);
     } else {
       const fuseResult = fuse.search(text);
-      itemsFiltered = fuseResult.map(i => i.item);
+      if (debugOutput && displayHints) console.groupCollapsed(
+        "CommandPal search: " + text)
+      itemsFiltered = fuseResult.map(processResult);
+      if (debugOutput && displayHints) console.groupEnd()
     }
   }
 
@@ -133,6 +258,7 @@
     }
     dispatch("closed");
     selectedIndex = 0;
+    removeHints(inputData);
     setItems(inputData);
     showModal = false;
     if ( ! focusedElement ) {
