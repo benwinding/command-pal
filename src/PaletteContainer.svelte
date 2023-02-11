@@ -42,6 +42,16 @@
   .search-box {
     padding: 7px;
   }
+
+  :global(.header) {
+   background-color: rgba(0, 0, 0, 0.33);
+   border-block-end: black ridge 2px;
+   color: #ddd;
+   font-size: smaller;
+   padding-block-end: 0.1em;
+   padding-block-start: 0.5em;
+   padding-inline: 0.5em;
+  }
   /* .search:focus {
   color: white;
 } */
@@ -50,6 +60,7 @@
 <div class="modal-mask" class:hidden={!show}>
   <div class="modal-wrapper">
     <div class="modal-container">
+      <slot name="header" />
       <div class="search-box">
         <slot name="search" />
       </div>

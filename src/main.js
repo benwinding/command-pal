@@ -19,6 +19,7 @@ class CommandPal {
         placeholderText: this.options.placeholder || "What are you looking for?",
         hotkeysGlobal: this.options.hotkeysGlobal || false,
         hideButton: this.options.hideButton || false,
+        headerText: this.options.headerText || null,
       },
     });
     const ctx = this;
