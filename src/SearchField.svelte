@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   import { asyncTimeout } from "./shortcuts";
@@ -26,7 +26,8 @@
   }
 
   function onKeyDown(e) {
-    const keyCode = e.code.toLowerCase();
+    let keyCode = e.key.toLowerCase();
+
     if (keyCode === "enter") {
       dispatch("enter", inputValue);
       onBlur();
