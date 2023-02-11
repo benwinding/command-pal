@@ -126,7 +126,7 @@
     }
   }
 
-  async function onClosed(e) {
+  async function onClosed() {
     await asyncTimeout(10);
     if (loadingChildren) {
       return;
