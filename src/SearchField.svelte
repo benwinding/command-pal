@@ -82,6 +82,6 @@
   on:keydown={onKeyDown}
   on:input={onTextChanged}
   autocomplete="no"
-  autocapitalize="no"
+  autocapitalize="none"
   type="text"
   placeholder={placeholderText} />
