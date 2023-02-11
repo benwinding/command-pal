@@ -23,11 +23,11 @@
   "homepage": "https://github.com/benwinding/command-pal",
   "repository": "git@github.com:benwinding/command-pal.git",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "11.0.2",
+    "@rollup/plugin-commonjs": "11.x",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "docpress": "^0.8.1",
     "gh-pages": "^2.2.0",
-    "rollup": "2",
+    "rollup": "2.x",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "6.x",
     "rollup-plugin-terser": "^5.1.2",
