@@ -19,6 +19,7 @@
   export let placeholderText: string;
   export let hideButton: boolean;;
   export let paletteId: string;
+  export let headerText: string;
 
   const optionsFuse = {
     isCaseSensitive: false,
@@ -142,6 +143,15 @@
     <MobileButton on:click={onMobileClick} />
   {/if}
   <PaletteContainer bind:show={showModal}>
+    <!-- when svelte gets conditional slots
+         https://github.com/sveltejs/svelte/issues/5604
+         re-implement to remove the empty div.hidden.
+    --> 
+    <div class="{ headerText === null ? 'hidden': 'header' }" slot="header">
+      {#if headerText !== null }
+        {headerText}
+      {/if}
+    </div>    
     <div slot="search">
       <SearchField
         placeholderText={placeholderText}

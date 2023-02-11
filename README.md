@@ -134,6 +134,8 @@ const c = new CommandPal({
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   debugOuput: false, // if true report debugging info to console
   hideButton: false, // if true, do not generate mobile button
+  headerText: null,  // Text to display in the header of the palette.
+                     // If null (default), do not add header.
   commands: [
     // Commands go here
   ]
