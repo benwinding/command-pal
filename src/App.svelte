@@ -37,29 +37,20 @@
   };
 
   if ( orderedCommands ) {
-    optionsFuse.sortFn = function (a,b) {
-      /* Sort results in two groups.  If scores of either item are
-         below 0.009 sort by score.  This prevents two items with
-         weights of 0.003 and 2.2E-16 from being bucketed and sorted
-         by order in the command array. If the value is low enough to
-         be a really good match, don't use the implicit order in the
-         commands array to override it.
+    optionsFuse.sortFn = function(a, b) {
+      const belowThreshold = a.score < 0.009 || b.score < 0.009;
+      const scoresAreEqual = a.score === b.score;
+      const scoresClose = Math.abs(a.score - b.score) < 0.05;
 
-         If both scores are larger than 0.009 and the difference
-         between them is < 0.05, bucket them together and sort the
-         items in the bucket by their original index location in the
-         commands array. In this case fuse.js isn't that certain about
-         the match and we order based on the position in the command
-         array that we have chosen to be most likely.
-
-         Note 0.009 and 0.05 are magic numbers that worked in testing, YMMV.
-      */
-      return ((a.score > 0.009 && b.score > 0.009) && // if scores > minimum
-              Math.abs (a.score - b.score) < 0.05 ?  // bucket them
-                (a.idx < b.idx ? -1 : 1) :  // sort by order in commands array
-                 (a.score == b.score ?  // else if scores equal
-                   (a.idx < b.idx ? -1 : 1) : // sort by index order
-                   a.score < b.score ? -1 : 1)) // else sort lowest score first
+      if (belowThreshold) {
+        return a.score < b.score ? -1 : 1;
+      } else if (scoresClose) {
+        return a.idx < b.idx ? -1 : 1;
+      } else if (scoresAreEqual) {
+        return a.idx < b.idx ? -1 : 1;
+      } else {
+        return a.score < b.score ? -1 : 1;
+      }
     }
     if (debugOutput) console.log('Using commands weighted sort');
 
