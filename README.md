@@ -340,6 +340,7 @@ window.commandPalIgnoreBlur = true;
 // Re-enable
 window.commandPalIgnoreBlur = false;
 ```
+To close the palette. focus/select the search input and press the escape `ESC` key.
 
 Have a go, PR's and issues always welcome.
 

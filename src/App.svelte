@@ -67,15 +67,22 @@
   let items = inputData;
   let itemsFiltered = inputData;
   let fuse = new Fuse(items, optionsFuse);
+  let focusedElement;
 
   onMount(() => {
     initShortCuts(hotkeysGlobal);
     setMainShortCut(hotkey, async () => {
-      showModal = true;
-      selectedIndex = 0;
-      dispatch("opened");
+      if (showModal) {
+      	onClosed()
+      } else {
+        focusedElement = document.activeElement
+        showModal = true;
+        selectedIndex = 0;
+        dispatch("opened");
+      }
     });
     setAllShortCuts(inputData, async command => {
+      focusedElement = document.activeElement
       showModal = true;
       dispatch("opened");
       await asyncTimeout(200);
@@ -245,7 +252,7 @@
     }
   }
 
-  async function onClosed(e) {
+  async function onClosed() {
     await asyncTimeout(10);
     if (loadingChildren) {
       return;
@@ -255,6 +262,11 @@
     removeHints(inputData);
     setItems(inputData);
     showModal = false;
+    if ( ! focusedElement ) {
+      console.error("focusedElement not set")
+    } else {
+      focusedElement.focus()
+    }
   }
 
   function onMobileClick(e) {
@@ -262,11 +274,26 @@
     showModal = true;
     selectedIndex = 0;
   }
+
+  function onMobileFocus(e) {
+    /* Store the item that had focus and assign it to focusedElement.
+       This will allow us to set focus back to it when we exit. */
+
+    // Surprisingly event is defined and has the correct data
+    // even if I don't do this. But I'll explicity pass it via details.
+    // as having event magically defined scares me.
+    let event = e.detail;
+    if (event.relatedTarget && event.relatedTarget.focus) {
+       focusedElement = event.relatedTarget;
+    } else {
+      focusedElement = document.body
+    }
+  }
 </script>
 
 <div id={paletteId}>
   {#if !hideButton}
-    <MobileButton on:click={onMobileClick} />
+    <MobileButton on:click={onMobileClick} on:focus={onMobileFocus}/>
   {/if}
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
