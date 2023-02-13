@@ -59,7 +59,7 @@
       dispatch("arrowup");
     } else if (keyCode === "backspace" && backspaceCloseCount) {
       // empty input: undefined if just opened, if keys added/deleted is ''
-      if (inputValue === undefined || inputValue === '' ){
+      if (!inputValue){
 	currentBackspaceCount++
 	if (currentBackspaceCount >= backspaceCloseCount) {
 	  onBlur();
