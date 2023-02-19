@@ -34,6 +34,8 @@
   let itemsFiltered = inputData;
   let fuse = new Fuse(items, optionsFuse);
   let focusedElement;
+  let selectionStart: number | undefined;
+  let selectionEnd: number | undefined;
 
   onMount(() => {
     initShortCuts(hotkeysGlobal);
@@ -41,7 +43,9 @@
       if (showModal) {
       	onClosed()
       } else {
-        focusedElement = document.activeElement
+        focusedElement = document.activeElement;
+        selectionStart = focusedElement.selectionStart;
+        selectionEnd = focusedElement.selectionEnd;
         showModal = true;
         selectedIndex = 0;
         dispatch("opened");
@@ -79,6 +83,7 @@
       searchField.focus();
       loadingChildren = false;
     } else {
+      await asyncTimeout(25);
       dispatch("exec", command);
       showModal = false;
     }
@@ -138,7 +143,10 @@
     if ( ! focusedElement ) {
       console.error("focusedElement not set")
     } else {
-      focusedElement.focus()
+      focusedElement.focus();
+      if (selectionStart && selectionEnd) {
+        focusedElement.setSelectionRange(selectionStart, selectionEnd);
+      }
     }
   }
 
