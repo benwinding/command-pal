@@ -71,6 +71,19 @@
     font-family: monospace;
   }
   .items-list {
+    /* indicata ability to scroll with edge scroll shadow.
+       https://css-scroll-shadows.vercel.app */
+    background:
+	linear-gradient(#373737 33%, rgba(55,55,55, 0)),
+	linear-gradient(rgba(55,55,55, 0), #373737 66%) 0 100%,
+	radial-gradient(farthest-side at 50% 0, rgba(255,255,255, 0.5),
+			rgba(0,0,0,0)),
+	radial-gradient(farthest-side at 50% 100%, rgba(255,255,255, 0.5),
+			rgba(0,0,0,0)) 0 100%;
+    background-color: #373737;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+    background-size: 100% 72px, 100% 72px, 100% 24px, 100% 24px;
     overflow-y: auto;
     max-height: min(360px, 50vh);
     max-height: min(360px, 80dvh);
